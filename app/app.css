@@ -5,22 +5,24 @@
     "Raleway", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  --green-apple: #93ad19;
-  --green-meadow: #6e8711;
-  --green-moss: #5a6f07;
-  --cream: #fffbe9;
-  --anthracite: #212121;
+  --color-green-apple: #93ad19;
+  --color-green-meadow: #6e8711;
+  --color-green-moss: #5a6f07;
+  --color-cream: #fffbe9;
+  --color-anthracite: #212121;
 }
 
 html,
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: auto;
-  background-color: var(--cream);
+  background-color: var(--color-cream);
   font-family: var(--font-raleway);
   font-size: 16px;
   font-weight: 400;
-  color: var(--anthracite);
+  color: var(--color-anthracite);
+  width: 100%;
 }

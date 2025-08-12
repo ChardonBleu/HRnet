@@ -1,12 +1,12 @@
 import Header from "../components/Header";
 import Footer from "~/components/Footer";
 
-export default function Home() {
+export default function Employees() {
   return (
     <>
       <Header />
       <main>
-        <h2>Create Employee</h2>
+        <p>Employees list</p>
       </main>
       <Footer />
     </>

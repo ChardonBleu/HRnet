@@ -10,7 +10,8 @@
     "typecheck": "react-router typegen && tsc",
     "fmt": "npx prettier . --write",
     "lint": "npx eslint",
-    "all": "npx prettier . --check && npx eslint . && react-router typegen && tsc"
+    "all": "npx prettier . --check && npx eslint . && react-router typegen && tsc",
+    "test": "jest"
   },
   "dependencies": {
     "@react-router/node": "^7.7.1",
@@ -21,12 +22,15 @@
     "react-router": "^7.7.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
     "@eslint/js": "^9.33.0",
     "@react-router/dev": "^7.7.1",
     "@tailwindcss/vite": "^4.1.4",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "babel-jest": "^30.0.5",
     "eslint": "^9.33.0",
     "eslint-plugin-react": "^7.37.5",
     "gh-pages": "^6.3.0",
