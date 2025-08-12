@@ -1,10 +1,10 @@
 # ![HRNet](public/hrnet_logo.png)
+
 # Welcome to HRnet
 
 This app is the Projet 13 of Openclassrooms training Javascript React.
 I chose to use framework mode from React Router v7, including a default template.
 And I chose to use Redux Toolkit, as recommended in Redux documentation.
-
 
 ## Getting Started
 
