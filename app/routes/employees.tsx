@@ -6,7 +6,7 @@ export default function Employees() {
     <>
       <Header />
       <main>
-        <p>Employees list</p>
+        <h2>Employees list</h2>
       </main>
       <Footer />
     </>
