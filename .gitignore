@@ -8,3 +8,4 @@
 coco.sh
 
 .vite/*
+coverage/*
