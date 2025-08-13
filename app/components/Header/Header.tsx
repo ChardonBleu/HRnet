@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 
 export default function Header() {
-  function LinkColor(isActive: boolean, isPending: boolean) {
+  function linkColor(isActive: boolean, isPending: boolean) {
     return isActive
       ? "underline underline-offset-4 decoration-green-apple decoration-solid decoration-2"
       : isPending
@@ -20,7 +20,7 @@ export default function Header() {
           <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-              LinkColor(isActive, isPending)
+              linkColor(isActive, isPending)
             }
           >
             Home
@@ -28,7 +28,7 @@ export default function Header() {
           <NavLink
             to="/employee-list"
             className={({ isActive, isPending }) =>
-              LinkColor(isActive, isPending)
+              linkColor(isActive, isPending)
             }
           >
             Employees

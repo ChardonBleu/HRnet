@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [
     tailwindcss(),
-    reactRouter(),
+    !process.env.VITEST && reactRouter(),
     tsconfigPaths(),
     react(),
   ],
@@ -24,6 +24,9 @@ export default defineConfig({
         'app/**/*.spec.{js,ts}',
         'app/**/*.test.{js,ts}',
         'app/**/*.d.ts',
+        'app/test/*.ts',
+        'app/routes.ts',
+        'app/root.tsx'
       ],
       thresholds: {
         lines: 80,
