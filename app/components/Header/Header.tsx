@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex justify-between items-center w-full bg-white pr-10 pl-10 pt-2 pb-2 text">
+      <header className="flex justify-between items-center w-full bg-white pr-10 pl-10 pt-2 pb-2">
         <h1>
           <img src="/hrnet_logo.png" alt="App logo" />
           <span className="sr-only">HRnet</span>

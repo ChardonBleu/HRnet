@@ -1,12 +1,16 @@
 import Header from "../components/Header/Header";
 import Footer from "~/components/Footer/Footer";
+import EmployeeForm from "~/components/EmployeeForm/EmployeeForm";
 
 export default function Home() {
   return (
     <>
       <Header />
       <main>
-        <h2>Create Employee</h2>
+        <section className="bg-white flex flex-col justify-center items-center rounded-lg w-4xl m-10 p-10 shadow-xl ">
+          <h2 className="text-2xl font-bold mb-10">Create Employee Form</h2>
+          <EmployeeForm />
+        </section>
       </main>
       <Footer />
     </>
