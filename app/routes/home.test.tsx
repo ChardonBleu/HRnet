@@ -1,16 +1,26 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { createMemoryRouter, RouterProvider } from "react-router";
 import Home from "./home";
-import { MemoryRouter } from "react-router";
 
 describe("Home", () => {
   it("renders with title", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Home />
-      </MemoryRouter>,
+    // Créer un router en mémoire avec la route
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/",
+          element: <Home />,
+        },
+      ],
+      {
+        initialEntries: ["/"],
+      },
     );
-    const title = screen.getByText("Create Employee");
+
+    render(<RouterProvider router={router} />);
+
+    const title = screen.getByText("Create Employee Form");
     expect(title).toBeInTheDocument();
   });
 });

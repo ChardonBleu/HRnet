@@ -6,7 +6,7 @@ import { MemoryRouter } from "react-router";
 describe("Employees", () => {
   it("renders with title", () => {
     render(
-      <MemoryRouter initialEntries={["employee-list"]}>
+      <MemoryRouter initialEntries={["/employee-list"]}>
         <Employees />
       </MemoryRouter>,
     );

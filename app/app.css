@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Import de votre module CSS personnalisé */
+@import "./components/InputWithError/InputWithError.css";
 
 @theme {
   --font-raleway:
@@ -12,7 +14,7 @@
   --color-anthracite: #212121;
   --color-mouse: #e5e7eb;
   --color-error: #910000;
-  --color-error-pale: rgba(158, 17, 0, 0.6)
+  --color-error-pale: rgba(158, 17, 0, 0.6);
 }
 
 html,
@@ -28,25 +30,4 @@ body {
   font-weight: 400;
   color: var(--color-anthracite);
   width: 100%;
-}
-
-.error[data-error]::after {
-  content: attr(data-error);
-  font-size: 10px;
-  color: var(--color-error);
-  display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  text-align: left;
-  line-height: 0.3;
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.error[data-error-visible="true"]::after {
-  opacity: 1;
-}
-
-input::placeholder {
-  color: var(--color-mouse)
 }
