@@ -1,6 +1,8 @@
 import { Form } from "react-router";
 import InputWithError from "../InputWithError/InputWithError";
 import InputWithDatePickerAndError from "../InputWithDatePicker/InputWithDatePicker";
+import SelectWithError from "../SelectWithError/SelectWithError"
+import { departments, states } from "~/utils/constants";
 
 function displayErrorMessage(
   errorValidation: boolean | undefined,
@@ -43,7 +45,14 @@ export function validationForm() {
 export function handleSubmit(event: React.FormEvent) {
   event.preventDefault();
   const isValidForm = validationForm();
-  console.log("isValidForm: " + isValidForm);
+
+  if (isValidForm) {
+    const form = event.currentTarget
+    console.log(form)
+    // window.location.reload()
+  }
+  
+  
 }
 
 export default function EmployeeForm() {
@@ -81,6 +90,7 @@ export default function EmployeeForm() {
           labelTitle="Start Date:"
           placeholder="01/09/2009"
         />
+
         <fieldset className="border-2 border-anthracite rounded-md p-4 w-md mb-8">
           <legend>Address</legend>
           <InputWithError
@@ -99,29 +109,7 @@ export default function EmployeeForm() {
             placeholder="Metropolis"
             minLength={2}
           />
-
-          {/* TODO create reusable components for form parts 
-            one for select with props options, error-message
-            */}
-          <div className="flex mb-4">
-            <label htmlFor="state" className="mr-5">
-              State:
-            </label>
-            <div
-              className="error"
-              data-error="Please choose a state in the list."
-            >
-              <select
-                name="state"
-                id="state"
-                required
-                className="border-mouse border-1 rounded-md pl-4 w-xs text-mouse"
-              >
-                <option></option>
-              </select>
-            </div>
-          </div>
-
+          <SelectWithError name="state" labelTitle="State:" options={states.map((state) => state.name)}/>
           <InputWithError
             name="zip-code"
             labelTitle="Zip Code:"
@@ -132,35 +120,10 @@ export default function EmployeeForm() {
           />
         </fieldset>
 
-        {/* TODO create reusable components for form parts 
-            one for select with props options, error-message
-        */}
-        <div className="flex mb-4">
-          <label htmlFor="department" className="mr-5">
-            Department:
-          </label>
-          <div
-            className="error"
-            data-error="Please choose a department in the list."
-          >
-            <select
-              name="department"
-              id="department"
-              required
-              className="border-mouse border-1 rounded-md pl-4 w-xs text-mouse"
-            >
-              <option></option>
-              <option value="1">Sales</option>
-              <option value="2">Marketing</option>
-              <option value="3">Engineering</option>
-              <option value="4">Human Resources</option>
-              <option value="5">Legal</option>
-            </select>
-          </div>
-        </div>
+        <SelectWithError name="department" labelTitle="Department:" options={departments}/>
 
         <input
-          className="bg-mouse rounded-md p-2 m-10 shadow-md self-center w-40"
+          className="bg-green-meadow text-white font-bold rounded-md p-2 m-10 shadow-md self-center w-40"
           type="submit"
           value="Save"
         ></input>
