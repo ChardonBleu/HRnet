@@ -1,5 +1,6 @@
 import { Form } from "react-router";
 import InputWithError from "../InputWithError/InputWithError";
+import InputWithDatePickerAndError from "../InputWithDatePicker/InputWithDatePicker";
 
 function displayErrorMessage(
   errorValidation: boolean | undefined,
@@ -70,46 +71,16 @@ export default function EmployeeForm() {
           placeholder="Kent"
           minLength={2}
         />
-        {/* TODO create reusable components for form parts 
-            one for date with extenal library
-            one for select with props options, error-message
-            */}
-        <div className="flex mb-4">
-          <label htmlFor="birthDate" className="mr-5">
-            Birth Date:
-          </label>
-          <div
-            className="error"
-            data-error="Please choose a date in the calendar."
-          >
-            <input
-              type="date"
-              name="birthDate"
-              id="birthDate"
-              placeholder="13/05/1987"
-              required
-              className="border-mouse border-1 rounded-md pl-4"
-            />
-          </div>
-        </div>
-        <div className="flex mb-4">
-          <label htmlFor="startDate" className="mr-5">
-            Start Date:
-          </label>
-          <div
-            className="error"
-            data-error="Please choose a date in the calendar."
-          >
-            <input
-              type="date"
-              name="startDate"
-              id="startDate"
-              placeholder="01/09/2009"
-              required
-              className="border-mouse border-1 rounded-md pl-4"
-            />
-          </div>
-        </div>
+        <InputWithDatePickerAndError
+          name="birthdate"
+          labelTitle="Birth Date:"
+          placeholder="13/05/1987"
+        />
+        <InputWithDatePickerAndError
+          name="startDate"
+          labelTitle="Start Date:"
+          placeholder="01/09/2009"
+        />
         <fieldset className="border-2 border-anthracite rounded-md p-4 w-md mb-8">
           <legend>Address</legend>
           <InputWithError

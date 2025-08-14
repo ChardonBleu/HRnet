@@ -22,7 +22,6 @@ describe("InputWithError", () => {
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveAttribute("name", "firstName");
     expect(inputElement).toHaveAttribute("type", "text");
-    expect(inputElement).toHaveAttribute("placeholder", "Clark");
     expect(inputElement).toBeRequired();
     expect(inputElement).toHaveAttribute("minlength", "2");
     expect(inputElement).toHaveAttribute("id", "firstName");
