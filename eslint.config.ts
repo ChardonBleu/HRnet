@@ -23,7 +23,13 @@ export default defineConfig([
       },
     },
   },
-  globalIgnores([".react-router/*", ".vite/*", "build/*", "node_modules/*"]),
+  globalIgnores([
+    ".react-router/*",
+    ".vite/*",
+    "build/*",
+    "node_modules/*",
+    "coverage/*",
+  ]),
   {
     rules: {
       "react/react-in-jsx-scope": "off",
