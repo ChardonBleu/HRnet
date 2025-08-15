@@ -1,4 +1,4 @@
-import Header from "../components/Header/Header";
+import Header from "~/components/Header/Header";
 import Footer from "~/components/Footer/Footer";
 import EmployeeForm from "~/components/EmployeeForm/EmployeeForm";
 

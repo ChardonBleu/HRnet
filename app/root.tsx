@@ -6,7 +6,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 import type { Route } from "./+types/root";
 import "./app.css";
 
@@ -50,7 +51,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <Provider store={store}>
+          <Outlet />
+      </Provider></>
+  )
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

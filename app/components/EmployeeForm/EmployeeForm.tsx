@@ -3,6 +3,11 @@ import InputWithError from "../InputWithError/InputWithError";
 import InputWithDatePickerAndError from "../InputWithDatePicker/InputWithDatePicker";
 import SelectWithError from "../SelectWithError/SelectWithError"
 import { departments, states } from "~/utils/constants";
+import { useDispatch } from "react-redux";
+import { employeeAdded } from "~/store/store";
+import type { FormEvent } from "react";
+import { nanoid } from '@reduxjs/toolkit'
+
 
 function displayErrorMessage(
   errorValidation: boolean | undefined,
@@ -42,20 +47,27 @@ export function validationForm() {
   return validation;
 }
 
-export function handleSubmit(event: React.FormEvent) {
-  event.preventDefault();
-  const isValidForm = validationForm();
-
-  if (isValidForm) {
-    const form = event.currentTarget
-    console.log(form)
-    // window.location.reload()
-  }
-  
-  
-}
 
 export default function EmployeeForm() {
+  const dispatch = useDispatch()
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const isValidForm = validationForm();
+
+    if (isValidForm) {
+      const formData = new FormData(event.currentTarget)
+      console.log(formData)
+      const data = Object.fromEntries(formData.entries());
+      const employeeData = {
+        ...data,
+        id: nanoid()
+      }
+      dispatch(employeeAdded(employeeData))
+      window.location.reload()
+    }
+}
+
   return (
     <>
       <Form
