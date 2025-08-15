@@ -64,7 +64,7 @@ export default function EmployeeForm() {
         id: nanoid()
       }
       dispatch(employeeAdded(employeeData))
-      window.location.reload()
+
     }
 }
 

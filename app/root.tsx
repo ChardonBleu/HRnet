@@ -7,9 +7,10 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { Provider } from "react-redux";
-import { store } from "./store/store";
+import { loadAndRestoreState, store } from "./store/store";
 import type { Route } from "./+types/root";
 import "./app.css";
+import { useEffect } from 'react';
 
 export const meta: Route.MetaFunction = () => [
   { title: "HRnet" },
@@ -51,6 +52,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useEffect(() =>{
+    loadAndRestoreState()
+  }, []);
+
   return (
     <>
       <Provider store={store}>

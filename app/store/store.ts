@@ -4,17 +4,17 @@ import {
     configureStore,
 } from '@reduxjs/toolkit'
 
-const employeeAdapter = createEntityAdapter({
-})
+const STORAGE_KEY = "redux-state";
+const isClient = typeof window !== 'undefined';
+
+const employeeAdapter = createEntityAdapter({})
 
 const employeeSlice = createSlice({
     name: 'employees',
     initialState: employeeAdapter.getInitialState(),
     reducers: {
         employeeAdded: employeeAdapter.addOne,
-        newEmployee(state, action) {
-            employeeAdapter.addOne(state, action.payload)
-        }
+        employeesSetAll: employeeAdapter.setAll
     }
 })
 
@@ -26,10 +26,42 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 
+export const loadAndRestoreState = () => {
+    if (!isClient) return;
+    
+    try {
+        const savedState = localStorage.getItem(STORAGE_KEY);
+        if (savedState) {
+            const parsedState = JSON.parse(savedState) as RootState;
+            if (parsedState.employees?.entities) {
+                const employees = Object.values(parsedState.employees.entities).filter(Boolean);
+                store.dispatch(employeesSetAll(employees));
+            }
+        }
+    } catch (err) {
+        console.warn("Impossible de charger l'état:", err);
+    }
+};
+
+const saveState = (state: RootState) => {
+    if (!isClient) return;
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (err) {
+        console.warn("Impossible de sauvegarder:", err);
+    }
+};
+
+if (isClient) {
+    store.subscribe(() => {
+        saveState(store.getState());
+    });
+}
+
 const employeesSelectors = employeeAdapter.getSelectors<RootState>(
     (state) => state.employees,
 )
 
-export const allEmployees = employeesSelectors.selectAll(store.getState())
+export const allEmployees = employeesSelectors.selectAll
 
-export const { employeeAdded, newEmployee } = employeeSlice.actions;
+export const { employeeAdded, employeesSetAll } = employeeSlice.actions;
