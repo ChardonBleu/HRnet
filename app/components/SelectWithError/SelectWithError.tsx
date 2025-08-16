@@ -23,37 +23,35 @@ interface InputWithErrorType {
  * @retrun {ReactElement}
  * */
 export default function SelectWithError({
-    name = "",
-    labelTitle = "",
-    isRequired = true,
-    options=[]
+  name = "",
+  labelTitle = "",
+  isRequired = true,
+  options = [],
 }: InputWithErrorType): ReactElement {
-
-    function optionElement(text: string, index: number){
-        return (
-            <option value={index + 1} key={index}>{text}</option>
-        )
-    }
-
+  function optionElement(text: string, index: number) {
     return (
-        <div className="flex mb-4">
-        <label htmlFor={name} className="mr-5">
-            {labelTitle}
-        </label>
-        <div
-            className="error"
-            data-error="Please choose an element in the list."
+      <option value={text} key={index}>
+        {text}
+      </option>
+    );
+  }
+
+  return (
+    <div className="flex mb-4">
+      <label htmlFor={name} className="mr-5">
+        {labelTitle}
+      </label>
+      <div className="error" data-error="Please choose an element in the list.">
+        <select
+          name={name}
+          id={name}
+          required={isRequired}
+          className="border-mouse border-1 rounded-md pl-4 w-xs"
         >
-            <select
-            name={name}
-            id={name}
-            required={isRequired}
-            className="border-mouse border-1 rounded-md pl-4 w-xs"
-            >
-                <option></option>
-                {options.map((optionText, index) => optionElement(optionText, index))}
-            </select>
-        </div>
-        </div>
+          <option></option>
+          {options.map((optionText, index) => optionElement(optionText, index))}
+        </select>
+      </div>
+    </div>
   );
 }

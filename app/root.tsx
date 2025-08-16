@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { loadAndRestoreState, store } from "./store/store";
 import type { Route } from "./+types/root";
 import "./app.css";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { Loading } from "./components/Loading/Loading";
 
 export const meta: Route.MetaFunction = () => [
@@ -57,16 +57,17 @@ export function HydrateFallback() {
 }
 
 export default function App() {
-  useEffect(() =>{
-    loadAndRestoreState()
+  useEffect(() => {
+    loadAndRestoreState();
   }, []);
 
   return (
     <>
       <Provider store={store}>
-          <Outlet />
-      </Provider></>
-  )
+        <Outlet />
+      </Provider>
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

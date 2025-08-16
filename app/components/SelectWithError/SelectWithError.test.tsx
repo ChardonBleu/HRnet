@@ -15,17 +15,15 @@ describe("InputWithError", () => {
     expect(labelElement).toBeInTheDocument();
     expect(labelElement).toHaveAttribute("for", "states");
 
-    const selectElement = document.getElementById("states")
+    const selectElement = document.getElementById("states");
     expect(selectElement).toBeInTheDocument();
     expect(selectElement).toHaveAttribute("name", "states");
     expect(selectElement).toBeRequired();
 
-    const optionElementAll = document.querySelectorAll("option")
-    expect(optionElementAll.length).toEqual(3)
-    expect(optionElementAll[0].value).toBeFalsy()
-    expect(optionElementAll[1].value).toEqual("1")
-    expect(optionElementAll[1].innerHTML).toEqual("un")
-
-
+    const optionElementAll = document.querySelectorAll("option");
+    expect(optionElementAll.length).toEqual(3);
+    expect(optionElementAll[0].value).toBeFalsy();
+    expect(optionElementAll[1].value).toEqual("1");
+    expect(optionElementAll[1].innerHTML).toEqual("un");
   });
 });
