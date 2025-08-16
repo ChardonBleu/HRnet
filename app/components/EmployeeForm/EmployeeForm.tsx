@@ -1,9 +1,19 @@
 import { Form } from "react-router";
 import InputWithError from "../InputWithError/InputWithError";
 import InputWithDatePickerAndError from "../InputWithDatePicker/InputWithDatePicker";
-import SelectWithError from "../SelectWithError/SelectWithError"
-import { departments, states } from "~/utils/constants";
+import SelectWithError from "../SelectWithError/SelectWithError";
+import { DEPARTMENTS, STATES } from "~/utils/constants";
+import { useDispatch } from "react-redux";
+import { employeeAdded } from "~/store/store";
+import type { Employee } from "~/store/store";
+import type { FormEvent } from "react";
+import { nanoid } from "@reduxjs/toolkit";
 
+/**
+ * Displays error message if not input validation
+ * @param errorValidation returned validation for the input elemnt
+ * @param errorDiv div elemnt where the error message must display
+ */
 function displayErrorMessage(
   errorValidation: boolean | undefined,
   errorDiv: Element,
@@ -15,7 +25,11 @@ function displayErrorMessage(
   }
 }
 
-export function validationForm() {
+/**
+ * For each input check validity
+ * @returns {boolean} global form validation
+ */
+export function validationForm(): boolean {
   let validation = true;
   const allErrors = document.querySelectorAll(".error");
 
@@ -26,7 +40,7 @@ export function validationForm() {
     if (input) {
       isValidInput = input.checkValidity();
       const isValidZipCode =
-        input?.name == "zip-code" && input.value.toString().length < 5
+        input?.name == "zipCode" && input.value.toString().length < 5
           ? false
           : true;
 
@@ -42,20 +56,24 @@ export function validationForm() {
   return validation;
 }
 
-export function handleSubmit(event: React.FormEvent) {
-  event.preventDefault();
-  const isValidForm = validationForm();
-
-  if (isValidForm) {
-    const form = event.currentTarget
-    console.log(form)
-    // window.location.reload()
-  }
-  
-  
-}
-
 export default function EmployeeForm() {
+  const dispatch = useDispatch();
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const isValidForm = validationForm();
+
+    if (isValidForm) {
+      const formData = new FormData(event.currentTarget);
+      const data = Object.fromEntries(formData.entries());
+      const employeeData = {
+        ...data,
+        id: nanoid(),
+      } as Employee;
+      dispatch(employeeAdded(employeeData));
+    }
+  }
+
   return (
     <>
       <Form
@@ -81,7 +99,7 @@ export default function EmployeeForm() {
           minLength={2}
         />
         <InputWithDatePickerAndError
-          name="birthdate"
+          name="birthDate"
           labelTitle="Birth Date:"
           placeholder="13/05/1987"
         />
@@ -109,9 +127,13 @@ export default function EmployeeForm() {
             placeholder="Metropolis"
             minLength={2}
           />
-          <SelectWithError name="state" labelTitle="State:" options={states.map((state) => state.name)}/>
+          <SelectWithError
+            name="state"
+            labelTitle="State:"
+            options={STATES.map((state) => state.name)}
+          />
           <InputWithError
-            name="zip-code"
+            name="zipCode"
             labelTitle="Zip Code:"
             errorMessage="Please enter at least 5 numbers for the zip code."
             type="number"
@@ -120,7 +142,11 @@ export default function EmployeeForm() {
           />
         </fieldset>
 
-        <SelectWithError name="department" labelTitle="Department:" options={departments}/>
+        <SelectWithError
+          name="department"
+          labelTitle="Department:"
+          options={DEPARTMENTS}
+        />
 
         <input
           className="bg-green-meadow text-white font-bold rounded-md p-2 m-10 shadow-md self-center w-40"

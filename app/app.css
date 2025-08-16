@@ -1,6 +1,7 @@
 @import "tailwindcss";
 /* Import de votre module CSS personnalisé */
 @import "./components/InputWithError/InputWithError.css";
+@import "./components/Loading/Loading.css";
 
 @theme {
   --font-raleway:
@@ -22,7 +23,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin: auto;
   background-color: var(--color-cream);
   font-family: var(--font-raleway);
@@ -30,4 +30,5 @@ body {
   font-weight: 400;
   color: var(--color-anthracite);
   width: 100%;
+  height: 100dvh;
 }

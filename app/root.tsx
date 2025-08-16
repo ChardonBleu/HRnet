@@ -6,9 +6,13 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { loadAndRestoreState } from "./store/storePersistance";
 import type { Route } from "./+types/root";
 import "./app.css";
+import { useEffect } from "react";
+import { Loading } from "./components/Loading/Loading";
 
 export const meta: Route.MetaFunction = () => [
   { title: "HRnet" },
@@ -49,8 +53,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+export function HydrateFallback() {
+  return <Loading />;
+}
+
 export default function App() {
-  return <Outlet />;
+  useEffect(() => {
+    loadAndRestoreState();
+  }, []);
+
+  return (
+    <>
+      <Provider store={store}>
+        <Outlet />
+      </Provider>
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

@@ -20,6 +20,5 @@ describe("InputWithError", () => {
     expect(inputElement).toHaveAttribute("name", "birthDate");
     expect(inputElement).toBeRequired();
     expect(inputElement).toHaveAttribute("id", "birthDate");
-
   });
 });
