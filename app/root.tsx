@@ -8,7 +8,7 @@ import {
 } from "react-router";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import { loadAndRestoreState } from "./store/persistance";
+import { loadAndRestoreState } from "./store/storePersistance";
 import type { Route } from "./+types/root";
 import "./app.css";
 import { useEffect } from "react";

@@ -32,7 +32,7 @@ export const loadAndRestoreState = () => {
  * state is saved in localStorage on each change
  * @returns
  */
-const saveState = (state: RootState) => {
+export const saveState = (state: RootState) => {
   if (!isClient) return;
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));

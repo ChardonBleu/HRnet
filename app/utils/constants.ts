@@ -7,6 +7,7 @@ export const DEPARTMENTS = [
   "Human Resosurces",
   "Legal",
 ];
+
 export const STATES = [
   {
     name: "Alabama",
