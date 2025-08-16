@@ -31,7 +31,7 @@ export function validationForm() {
     if (input) {
       isValidInput = input.checkValidity();
       const isValidZipCode =
-        input?.name == "zip-code" && input.value.toString().length < 5
+        input?.name == "zipCode" && input.value.toString().length < 5
           ? false
           : true;
 
