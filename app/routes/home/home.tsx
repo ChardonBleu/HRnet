@@ -6,9 +6,11 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="h-full">
-        <section className="bg-white flex flex-col justify-center items-center rounded-lg w-4xl m-10 p-10 shadow-md ">
-          <h2 className="text-2xl font-bold mb-10">Create Employee Form</h2>
+      <main className="flex-1">
+        <section className="bg-white flex flex-col justify-center items-center rounded-lg lg:w-4xl md:w-2xl lg:mt-10 lg:mb-10 mb-6 mt-6 lg:p-10 p-4 shadow-md ">
+          <h2 className="lg:text-2xl sm:text-xl font-bold lg:mb-10 mb-4">
+            Create Employee Form
+          </h2>
           <EmployeeForm />
         </section>
       </main>

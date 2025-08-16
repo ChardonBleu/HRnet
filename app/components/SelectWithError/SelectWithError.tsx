@@ -37,7 +37,7 @@ export default function SelectWithError({
   }
 
   return (
-    <div className="flex mb-4">
+    <div className="flex lg:mb-4">
       <label htmlFor={name} className="mr-5">
         {labelTitle}
       </label>
@@ -46,7 +46,7 @@ export default function SelectWithError({
           name={name}
           id={name}
           required={isRequired}
-          className="border-mouse border-1 rounded-md pl-4 w-xs"
+          className="border-mouse border-1 rounded-md pl-4 w-52"
         >
           <option></option>
           {options.map((optionText, index) => optionElement(optionText, index))}

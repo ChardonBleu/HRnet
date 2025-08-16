@@ -11,12 +11,12 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex justify-between items-center w-full bg-white pr-10 pl-10 pt-2 pb-2">
-        <h1>
+      <header className="flex justify-between items-center w-full bg-white pr-4 pl-4 lg:pr-10 lg:pl-10 pt-2 pb-2">
+        <h1 className="w-32 lg:w-52">
           <img src="/hrnet_logo.png" alt="App logo" />
           <span className="sr-only">HRnet</span>
         </h1>
-        <nav className="flex justify-center gap-10 text-xl">
+        <nav className="flex justify-center gap-10 lg:text-xl">
           <NavLink
             to="/"
             className={({ isActive, isPending }) =>
