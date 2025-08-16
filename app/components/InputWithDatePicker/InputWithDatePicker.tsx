@@ -26,7 +26,7 @@ export default function InputWithDatePickerAndError({
   isRequired = true,
 }: InputWithDatePickerType): ReactElement {
   return (
-    <div className="flex mb-4">
+    <div className="flex lg:mb-4">
       <label htmlFor={name} className="mr-5">
         {labelTitle}
       </label>

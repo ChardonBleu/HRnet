@@ -78,7 +78,7 @@ export default function EmployeeForm() {
     <>
       <Form
         onSubmit={handleSubmit}
-        className="text-xl flex flex-col"
+        className="lg:text-xl text-sm sm:text-base flex flex-col"
         noValidate
         data-testid="employeeForm"
       >
@@ -109,7 +109,7 @@ export default function EmployeeForm() {
           placeholder="01/09/2009"
         />
 
-        <fieldset className="border-2 border-anthracite rounded-md p-4 w-md mb-8">
+        <fieldset className="border-2 border-anthracite rounded-md p-4 lg:w-md w-fit mb-8">
           <legend>Address</legend>
           <InputWithError
             name="street"
@@ -149,7 +149,7 @@ export default function EmployeeForm() {
         />
 
         <input
-          className="bg-green-meadow text-white font-bold rounded-md p-2 m-10 shadow-md self-center w-40"
+          className="bg-green-meadow text-white font-bold rounded-md p-2 lg:m-10 shadow-md self-center w-40"
           type="submit"
           value="Save"
         ></input>
