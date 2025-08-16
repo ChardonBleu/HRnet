@@ -1,6 +1,7 @@
 @import "tailwindcss";
 /* Import de votre module CSS personnalisé */
 @import "./components/InputWithError/InputWithError.css";
+@import "./components/Loading/Loading.css";
 
 @theme {
   --font-raleway:

@@ -11,6 +11,7 @@ import { loadAndRestoreState, store } from "./store/store";
 import type { Route } from "./+types/root";
 import "./app.css";
 import { useEffect } from 'react';
+import { Loading } from "./components/Loading/Loading";
 
 export const meta: Route.MetaFunction = () => [
   { title: "HRnet" },
@@ -49,6 +50,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
+}
+
+export function HydrateFallback() {
+  return <Loading />;
 }
 
 export default function App() {

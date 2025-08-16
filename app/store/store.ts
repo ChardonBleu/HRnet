@@ -62,6 +62,7 @@ const employeesSelectors = employeeAdapter.getSelectors<RootState>(
     (state) => state.employees,
 )
 
-export const allEmployees = employeesSelectors.selectAll
+export const getAllEmployees = () => employeesSelectors.selectAll(store.getState())
+
 
 export const { employeeAdded, employeesSetAll } = employeeSlice.actions;
