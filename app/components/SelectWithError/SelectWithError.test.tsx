@@ -24,6 +24,5 @@ describe("InputWithError", () => {
     expect(optionElementAll.length).toEqual(3);
     expect(optionElementAll[0].value).toBeFalsy();
     expect(optionElementAll[1].value).toEqual("un");
-
   });
 });

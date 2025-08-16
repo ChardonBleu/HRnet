@@ -7,7 +7,8 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { Provider } from "react-redux";
-import { loadAndRestoreState, store } from "./store/store";
+import { store } from "./store/store";
+import { loadAndRestoreState } from "./store/persistance";
 import type { Route } from "./+types/root";
 import "./app.css";
 import { useEffect } from "react";

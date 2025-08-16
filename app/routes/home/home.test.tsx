@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import Home from "./home";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import { store } from "~/store/store";
 
 describe("Home", () => {
@@ -23,7 +23,7 @@ describe("Home", () => {
     render(
       <Provider store={store}>
         <RouterProvider router={router} />
-      </Provider>
+      </Provider>,
     );
 
     const title = screen.getByText("Create Employee Form");

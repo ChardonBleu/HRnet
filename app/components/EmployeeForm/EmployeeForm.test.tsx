@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
-import { Provider } from 'react-redux';
-import EmployeeForm from './EmployeeForm';
+import { Provider } from "react-redux";
+import EmployeeForm from "./EmployeeForm";
 import { store } from "~/store/store";
 import userEvent from "@testing-library/user-event";
 
@@ -23,7 +23,7 @@ describe("EmployeeForm", () => {
     return render(
       <Provider store={store}>
         <RouterProvider router={router} />
-      </Provider>
+      </Provider>,
     );
   };
 

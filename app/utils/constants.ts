@@ -1,11 +1,13 @@
-export const departments = [
+export const STORAGE_KEY = "redux-state";
+
+export const DEPARTMENTS = [
   "Sales",
   "Marketing",
   "Engineering",
   "Human Resosurces",
   "Legal",
 ];
-export const states = [
+export const STATES = [
   {
     name: "Alabama",
     abbreviation: "AL",

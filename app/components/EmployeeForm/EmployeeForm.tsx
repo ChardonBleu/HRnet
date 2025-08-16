@@ -2,13 +2,18 @@ import { Form } from "react-router";
 import InputWithError from "../InputWithError/InputWithError";
 import InputWithDatePickerAndError from "../InputWithDatePicker/InputWithDatePicker";
 import SelectWithError from "../SelectWithError/SelectWithError";
-import { departments, states } from "~/utils/constants";
+import { DEPARTMENTS, STATES } from "~/utils/constants";
 import { useDispatch } from "react-redux";
 import { employeeAdded } from "~/store/store";
 import type { Employee } from "~/store/store";
 import type { FormEvent } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 
+/**
+ * Displays error message if not input validation
+ * @param errorValidation returned validation for the input elemnt
+ * @param errorDiv div elemnt where the error message must display
+ */
 function displayErrorMessage(
   errorValidation: boolean | undefined,
   errorDiv: Element,
@@ -20,7 +25,11 @@ function displayErrorMessage(
   }
 }
 
-export function validationForm() {
+/**
+ * For each input check validity
+ * @returns {boolean} global form validation
+ */
+export function validationForm(): boolean {
   let validation = true;
   const allErrors = document.querySelectorAll(".error");
 
@@ -121,7 +130,7 @@ export default function EmployeeForm() {
           <SelectWithError
             name="state"
             labelTitle="State:"
-            options={states.map((state) => state.name)}
+            options={STATES.map((state) => state.name)}
           />
           <InputWithError
             name="zipCode"
@@ -136,7 +145,7 @@ export default function EmployeeForm() {
         <SelectWithError
           name="department"
           labelTitle="Department:"
-          options={departments}
+          options={DEPARTMENTS}
         />
 
         <input

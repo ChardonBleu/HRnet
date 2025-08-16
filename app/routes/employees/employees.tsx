@@ -1,11 +1,10 @@
 import Header from "~/components/Header/Header";
 import Footer from "~/components/Footer/Footer";
 import { useSelector } from "react-redux";
-import { getAllEmployees } from "~/store/store";
+import { getAllEmployees } from "~/store/selectors";
 
 export default function Employees() {
   const employees = useSelector(getAllEmployees);
-  console.log(employees);
 
   return (
     <>
