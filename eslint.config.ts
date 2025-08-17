@@ -29,6 +29,7 @@ export default defineConfig([
     "build/*",
     "node_modules/*",
     "coverage/*",
+    "app/components/ui",
   ]),
   {
     rules: {

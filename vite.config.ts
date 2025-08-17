@@ -25,6 +25,7 @@ export default defineConfig({
         "app/test/*.ts",
         "app/routes.ts",
         "app/root.tsx",
+        "app/components/ui",
       ],
       thresholds: {
         lines: 80,
