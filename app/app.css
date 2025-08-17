@@ -1,5 +1,6 @@
 @import "tailwindcss";
 /* Import de votre module CSS personnalisé */
+@import "./components/ui/shadcn.css";
 @import "./components/InputWithError/InputWithError.css";
 @import "./components/Loading/Loading.css";
 

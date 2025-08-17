@@ -1,6 +1,6 @@
 import { Form } from "react-router";
 import InputWithError from "../InputWithError/InputWithError";
-import InputWithDatePickerAndError from "../InputWithDatePicker/InputWithDatePicker";
+import InputWithDatePicker from "../InputWithDatePicker/InputWithDatePicker";
 import SelectWithError from "../SelectWithError/SelectWithError";
 import { DEPARTMENTS, STATES } from "~/utils/constants";
 import { useDispatch } from "react-redux";
@@ -62,7 +62,6 @@ export default function EmployeeForm() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const isValidForm = validationForm();
-
     if (isValidForm) {
       const formData = new FormData(event.currentTarget);
       const data = Object.fromEntries(formData.entries());
@@ -71,6 +70,7 @@ export default function EmployeeForm() {
         id: nanoid(),
       } as Employee;
       dispatch(employeeAdded(employeeData));
+      window.location.reload();
     }
   }
 
@@ -98,15 +98,15 @@ export default function EmployeeForm() {
           placeholder="Kent"
           minLength={2}
         />
-        <InputWithDatePickerAndError
+        <InputWithDatePicker
           name="birthDate"
           labelTitle="Birth Date:"
-          placeholder="13/05/1987"
+          isRequired={true}
         />
-        <InputWithDatePickerAndError
+        <InputWithDatePicker
           name="startDate"
           labelTitle="Start Date:"
-          placeholder="01/09/2009"
+          isRequired={true}
         />
 
         <fieldset className="border-2 border-anthracite rounded-md p-4 lg:w-md w-fit mb-8">
