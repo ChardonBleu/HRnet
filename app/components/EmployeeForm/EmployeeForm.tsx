@@ -6,8 +6,9 @@ import { DEPARTMENTS, STATES } from "~/utils/constants";
 import { useDispatch } from "react-redux";
 import { employeeAdded } from "~/store/store";
 import type { Employee } from "~/store/store";
-import type { FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { nanoid } from "@reduxjs/toolkit";
+import { InfoDialog } from "../InfoDialog/InfoDialog";
 
 /**
  * Displays error message if not input validation
@@ -57,7 +58,12 @@ export function validationForm(): boolean {
 }
 
 export default function EmployeeForm() {
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setShowModal(false);
+  }, []);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -70,7 +76,7 @@ export default function EmployeeForm() {
         id: nanoid(),
       } as Employee;
       dispatch(employeeAdded(employeeData));
-      window.location.reload();
+      setShowModal(true);
     }
   }
 
@@ -154,6 +160,7 @@ export default function EmployeeForm() {
           value="Save"
         ></input>
       </Form>
+      <InfoDialog showModal={showModal} modalTitle="employee created!" />
     </>
   );
 }
