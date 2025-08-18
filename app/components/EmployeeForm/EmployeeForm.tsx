@@ -109,7 +109,7 @@ export default function EmployeeForm() {
           isRequired={true}
         />
 
-        <fieldset className="border-2 border-anthracite rounded-md p-4 lg:w-md w-fit mb-8">
+        <fieldset className="border-2 border-green-meadow rounded-md p-4 lg:w-md w-fit mb-8">
           <legend>Address</legend>
           <InputWithError
             name="street"
