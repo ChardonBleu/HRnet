@@ -3,16 +3,24 @@ import Footer from "~/components/Footer/Footer";
 import { useSelector } from "react-redux";
 import { getAllEmployees } from "~/store/selectors";
 import type { Employee } from "~/store/store";
+import { STATES } from "~/utils/constants";
 
 export default function Employees() {
   const employees = useSelector(getAllEmployees);
 
   function EmployeeRow({ employee }: { employee: Employee }) {
+    const stateAbbrevation = STATES.filter(
+      (state) => state.name === employee.state,
+    )[0].abbreviation;
+
     return (
       <section key={employee.id} className="flex gap-4">
         <h2>{employee.lastName}</h2>
         <p>{employee.firstName}</p>
-        <div>{employee.birthDate}</div>
+        <p>{employee.birthDate}</p>
+        <p>{employee.state}</p>
+        <p>{stateAbbrevation}</p>
+        <p>{employee.department}</p>
       </section>
     );
   }

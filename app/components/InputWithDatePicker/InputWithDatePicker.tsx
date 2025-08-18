@@ -1,6 +1,5 @@
 "use client";
-import type { ReactElement } from "react";
-import * as React from "react";
+import { useState, type ReactElement } from "react";
 import { CalendarIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Calendar } from "../ui/calendar";
@@ -42,10 +41,10 @@ export default function InputWithDatePicker({
   isRequired = true,
 }: InputWithDatePickerType): ReactElement {
   const today = new Date();
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
-  const [date, setDate] = React.useState<Date | undefined>(today);
-  const [month, setMonth] = React.useState<Date | undefined>(date);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
+  const [date, setDate] = useState<Date | undefined>(today);
+  const [month, setMonth] = useState<Date | undefined>(date);
 
   return (
     <div className="flex lg:mb-4">

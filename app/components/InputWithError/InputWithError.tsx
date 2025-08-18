@@ -47,7 +47,7 @@ export default function InputWithError({
           placeholder={placeholder}
           required={isRequired}
           minLength={minLength}
-          className="border-mouse border-1 rounded-md pl-4"
+          className="border-mouse border-1 rounded-md pl-4 text-anthracite"
         />
       </div>
     </div>
