@@ -6,23 +6,16 @@ describe("InputWithError", () => {
   it("renders with props", () => {
     render(
       <SelectWithError
-        name="states"
+        name="state"
         labelTitle="State:"
         options={["un", "deux"]}
       />,
     );
     const labelElement = screen.getByText("State:");
     expect(labelElement).toBeInTheDocument();
-    expect(labelElement).toHaveAttribute("for", "states");
+    expect(labelElement).toHaveAttribute("for", "state");
 
-    const selectElement = document.getElementById("states");
+    const selectElement = screen.getByText("Pick a state");
     expect(selectElement).toBeInTheDocument();
-    expect(selectElement).toHaveAttribute("name", "states");
-    expect(selectElement).toBeRequired();
-
-    const optionElementAll = document.querySelectorAll("option");
-    expect(optionElementAll.length).toEqual(3);
-    expect(optionElementAll[0].value).toBeFalsy();
-    expect(optionElementAll[1].value).toEqual("un");
   });
 });

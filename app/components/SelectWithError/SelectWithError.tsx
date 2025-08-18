@@ -1,4 +1,11 @@
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../components/ui/select";
 
 interface InputWithErrorType {
   name: string;
@@ -28,11 +35,15 @@ export default function SelectWithError({
   isRequired = true,
   options = [],
 }: InputWithErrorType): ReactElement {
-  function optionElement(text: string, index: number) {
+  function selectItemElement(text: string, index: number) {
     return (
-      <option value={text} key={index}>
+      <SelectItem
+        value={text}
+        key={index}
+        className="lg:text-xl text-sm sm:text-base"
+      >
         {text}
-      </option>
+      </SelectItem>
     );
   }
 
@@ -42,15 +53,16 @@ export default function SelectWithError({
         {labelTitle}
       </label>
       <div className="error" data-error="Please choose an element in the list.">
-        <select
-          name={name}
-          id={name}
-          required={isRequired}
-          className="border-mouse border-1 rounded-md pl-4 w-52"
-        >
-          <option></option>
-          {options.map((optionText, index) => optionElement(optionText, index))}
-        </select>
+        <Select name={name} required={isRequired}>
+          <SelectTrigger className="w-[270px] lg:text-xl text-sm sm:text-base">
+            <SelectValue placeholder={"Pick a " + name} />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map((optionText, index) =>
+              selectItemElement(optionText, index),
+            )}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );

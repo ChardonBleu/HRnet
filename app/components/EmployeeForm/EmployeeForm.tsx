@@ -78,7 +78,7 @@ export default function EmployeeForm() {
     <>
       <Form
         onSubmit={handleSubmit}
-        className="lg:text-xl text-sm sm:text-base flex flex-col"
+        className="lg:text-xl text-sm sm:text-base flex flex-col text-anthracite"
         noValidate
         data-testid="employeeForm"
       >
@@ -149,7 +149,7 @@ export default function EmployeeForm() {
         />
 
         <input
-          className="bg-green-meadow text-white font-bold rounded-md p-2 lg:m-10 shadow-md self-center w-40"
+          className="bg-green-meadow text-white font-bold rounded-md p-2 lg:m-10 m-4 shadow-md self-center w-40"
           type="submit"
           value="Save"
         ></input>
