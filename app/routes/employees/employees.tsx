@@ -24,6 +24,7 @@ export default function Employees() {
       employee.city,
       stateAbbrevation(employee.state),
       employee.zipCode,
+      // employee.id
     ]);
   }
 
@@ -31,13 +32,11 @@ export default function Employees() {
     <>
       <Header />
       <main className="flex-1 align-center w-full pl-10 pr-10 flex justify-center">
-        <section className="bg-white flex flex-col justify-center items-center rounded-lg w-full max-w-[1480px] lg:mt-10 lg:mb-10 mb-6 mt-6 lg:p-10 p-4 shadow-md ">
-          <h2 className="lg:text-2xl sm:text-xl font-bold lg:mb-10 mb-4">
-            Current Employee
-          </h2>
+        <section className="bg-white h-fit flex flex-col rounded-lg w-full max-w-[1480px] lg:mt-10 lg:mb-10 mb-6 mt-6 lg:p-10 p-4 shadow-md">
           <DataTable
             datas={employeesForTable()}
             tableHeaders={EMPLOYEES_TABLE_HEADERS}
+            tableTitle="Current Employees"
           />
         </section>
       </main>

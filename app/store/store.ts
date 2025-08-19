@@ -27,6 +27,7 @@ const employeeSlice = createSlice({
   reducers: {
     employeeAdded: employeeAdapter.addOne,
     employeesSetAll: employeeAdapter.setAll,
+    employeeDelete: employeeAdapter.removeOne,
   },
 });
 
@@ -36,4 +37,4 @@ export const store = configureStore({
   },
 });
 
-export const { employeeAdded, employeesSetAll } = employeeSlice.actions;
+export const { employeeAdded, employeesSetAll, employeeDelete } = employeeSlice.actions;
