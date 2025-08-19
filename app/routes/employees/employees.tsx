@@ -24,7 +24,6 @@ export default function Employees() {
       employee.city,
       stateAbbrevation(employee.state),
       employee.zipCode,
-      // employee.id
     ]);
   }
 

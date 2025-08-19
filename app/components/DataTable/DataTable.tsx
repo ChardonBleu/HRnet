@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { employeeDelete } from "~/store/store";
+import { useEffect, useState, type FormEvent } from "react";
 
 interface DataTableType {
   datas: Array<Array<string>>;
@@ -15,7 +13,6 @@ export default function DataTable({
 }: DataTableType) {
   const [sortedDatas, setSortedDatas] = useState<Array<Array<string>>>([]);
   const [isSorted, setIsSorted] = useState<boolean[]>([]);
-//   const dispatch = useDispatch()
 
   useEffect(() => {
     setSortedDatas(datas);
@@ -47,10 +44,28 @@ export default function DataTable({
     setIsSorted(isSorted);
   }
 
+  function handleFilter(event: FormEvent) {
+    event.preventDefault()
+
+  }
+
   return (
     <>
       <section className="data-table">
         <h2 className="title">{tableTitle}</h2>
+        <div className="tools">
+            <div className="pagination">pagination</div>
+            <div className="filter">
+                <form onSubmit={(event) => handleFilter(event)}>
+                    <input
+                        type="text"
+                        placeholder="filter"
+                        name="filter"
+                    />
+                    <button type="submit"><i className="fa fa-filter"></i></button>
+                </form>
+                </div>
+        </div>
         <table className="table">
           <thead className="thead">
             <tr className="row">
@@ -71,9 +86,6 @@ export default function DataTable({
                 {row.map((item, index) => (
                   <td key={index}>{item}</td>
                 ))}
-                {/* <td onClick={() => {
-                    dispatch(employeeDelete(row[row.length - 1]))
-                }}>delete</td> */}
               </tr>
             ))}
           </tbody>
