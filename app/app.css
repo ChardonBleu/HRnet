@@ -36,3 +36,13 @@ body {
   width: 100%;
   min-height: 100dvh;
 }
+
+body .dark {
+  background-color: var(--color-anthracite);
+  color: var(--color-cream);
+}
+
+.body-dark {
+  background-color: var(--color-anthracite);
+  color: var(--color-cream);
+}

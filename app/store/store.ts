@@ -37,4 +37,5 @@ export const store = configureStore({
   },
 });
 
-export const { employeeAdded, employeesSetAll, employeeDelete } = employeeSlice.actions;
+export const { employeeAdded, employeesSetAll, employeeDelete } =
+  employeeSlice.actions;

@@ -24,7 +24,7 @@
 }
 
 .data-table thead {
-  border-bottom: 2px solid var(--table-accent)
+  border-bottom: 2px solid var(--table-accent);
 }
 
 .data-table th,
@@ -40,6 +40,10 @@
   background-color: var(--table-background);
 }
 
+.tbody {
+  padding-bottom: 10px;
+}
+
 .data-table {
   display: flex;
   flex-direction: column;
@@ -50,7 +54,6 @@
 .data-table .title {
   font-size: medium;
   font-weight: bold;
-  margin-bottom: 1rem;
   text-align: center;
 }
 
@@ -64,14 +67,12 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-
-
+  margin-top: 1rem;
 }
 
 .filter {
   border-radius: 5px;
   padding-left: 6px;
-
 }
 
 .filter input {
@@ -81,14 +82,90 @@
   border-radius: 5px;
   padding-left: 6px;
   margin-right: 6px;
-
 }
+
+.pagination {
+  display: flex;
+}
+.pagination .select {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-left: 6px;
+  margin-right: 6px;
+  padding-left: 4px;
+  border-color: var(--table-primary);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  width: 62px;
+  position: relative;
+}
+
+.pagination .select .options {
+  border-color: var(--table-primary);
+  border-style: solid;
+  border-width: 1px;
+  text-align: left;
+  width: 100%;
+  position: absolute;
+  background-color: white;
+  top: 30px;
+  border-radius: 4px;
+  display: none;
+  flex-direction: column;
+}
+.show-options {
+  display: flex !important;
+}
+
+.pagination .select .option {
+  padding-left: 4px;
+
+  display: flex;
+}
+.pagination .select .value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+}
+.pagination .select .fa {
+  padding-left: 6px;
+  padding-right: 4px;
+}
+
+.pagination .select .option:hover {
+  background-color: var(--table-accent);
+}
+
+.page-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-button {
+  background-color: var(--table-background);
+  border-radius: 6px;
+  padding: 6px;
+  margin-left: 10px;
+}
+
+.page-button:hover {
+  background-color: var(--table-accent);
+}
+
+.page-button_active {
+  background-color: var(--table-accent);
+} 
 
 @media (min-width: 640px) {
   .data-table {
     font-size: large;
   }
-  .data-table table, .data-table .tools {
+  .data-table table,
+  .data-table .tools {
     font-size: medium;
   }
 }
@@ -101,10 +178,11 @@
   .data-table .fa {
     font-size: medium;
   }
-  .data-table table, .data-table .tools {
+  .data-table table,
+  .data-table .tools {
     font-size: large;
   }
   .tools {
-  margin-bottom: 1.5rem;
-}
+    margin-bottom: 1.5rem;
+  }
 }

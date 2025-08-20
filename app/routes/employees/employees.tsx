@@ -3,7 +3,7 @@ import Footer from "~/components/Footer/Footer";
 import { useSelector } from "react-redux";
 import { getAllEmployees } from "~/store/selectors";
 import { EMPLOYEES_TABLE_HEADERS, STATES } from "~/utils/constants";
-import DataTable from "~/components/DataTable/DataTable";
+import DataTable from "../../components/DataTable/DataTable";
 
 export default function Employees() {
   const employees = useSelector(getAllEmployees);

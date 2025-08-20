@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router";
 
 export default function Header() {
@@ -8,6 +9,11 @@ export default function Header() {
         ? "text-green-apple"
         : "";
   }
+
+  useEffect(() => {
+    // const body = document.querySelector("body")
+    // body?.classList.add("body-dark")
+  }, []);
 
   return (
     <>
