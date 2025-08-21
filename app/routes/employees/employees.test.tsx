@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "~/store/store";
 
 describe("Employees", () => {
-  it("renders with title", () => {
+  it("renders with title and valid datas", () => {
     render(
       <MemoryRouter initialEntries={["/employee-list"]}>
         <Provider store={store}>
@@ -14,7 +14,8 @@ describe("Employees", () => {
         </Provider>
       </MemoryRouter>,
     );
-    const title = screen.getByText("Employees list");
+
+    const title = screen.getByText("Current Employees");
     expect(title).toBeInTheDocument();
   });
 });

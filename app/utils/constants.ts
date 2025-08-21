@@ -1,5 +1,17 @@
 export const STORAGE_KEY = "redux-state";
 
+export const EMPLOYEES_TABLE_HEADERS = [
+  "First Name",
+  "Last Name",
+  "Start Date",
+  "Department",
+  "Date of Birth",
+  "Street",
+  "City",
+  "State",
+  "Zip Code",
+];
+
 export const DEPARTMENTS = [
   "Sales",
   "Marketing",

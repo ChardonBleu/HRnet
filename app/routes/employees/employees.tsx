@@ -2,42 +2,50 @@ import Header from "~/components/Header/Header";
 import Footer from "~/components/Footer/Footer";
 import { useSelector } from "react-redux";
 import { getAllEmployees } from "~/store/selectors";
-import type { Employee } from "~/store/store";
-import { STATES } from "~/utils/constants";
+import { EMPLOYEES_TABLE_HEADERS, STATES } from "~/utils/constants";
+import DataTable from "../../components/DataTable/DataTable";
 
 export default function Employees() {
   const employees = useSelector(getAllEmployees);
 
-  function EmployeeRow({ employee }: { employee: Employee }) {
-    const stateAbbrevation = STATES.filter(
-      (state) => state.name === employee.state,
-    )[0].abbreviation;
+  function stateAbbrevation(employeeState: string) {
+    return STATES.filter((state) => state.name === employeeState)[0]
+      .abbreviation;
+  }
 
-    return (
-      <section key={employee.id} className="flex gap-4">
-        <h2>{employee.lastName}</h2>
-        <p>{employee.firstName}</p>
-        <p>{employee.birthDate}</p>
-        <p>{employee.state}</p>
-        <p>{stateAbbrevation}</p>
-        <p>{employee.department}</p>
-      </section>
-    );
+  const theme = {
+    primaryColor: "#212121",
+    backgroundColor: "#e5e7eb",
+    accentColor: "#6e8711",
+  };
+
+  function employeesForTable(): Array<Array<string>> {
+    return employees.map((employee) => [
+      employee.firstName,
+      employee.lastName,
+      employee.startDate,
+      employee.department,
+      employee.birthDate,
+      employee.street,
+      employee.city,
+      stateAbbrevation(employee.state),
+      employee.zipCode,
+    ]);
   }
 
   return (
     <>
       <Header />
-      <main className="flex-1">
-        <section className="m-10">
-          <h2 className="lg:text-2xl text-xl font-bold mb-10">
-            Employees list
+      <main className="flex-1 align-center w-full pl-10 pr-10 flex justify-center">
+        <section className="bg-white h-fit flex flex-col justify-center items-center rounded-lg w-full max-w-[1480px] lg:mt-10 lg:mb-10 mb-6 mt-6 lg:p-10 p-4 shadow-md">
+          <h2 className="lg:text-2xl sm:text-xl font-bold lg:mb-10 mb-4">
+            Current Employees
           </h2>
-          <div className="min-h-full flex flex-col">
-            {employees.map((employee) => {
-              return <EmployeeRow key={employee.id} employee={employee} />;
-            })}
-          </div>
+          <DataTable
+            datas={employeesForTable()}
+            tableHeaders={EMPLOYEES_TABLE_HEADERS}
+            theme={theme}
+          />
         </section>
       </main>
       <Footer />
