@@ -1,10 +1,22 @@
 import { useEffect, useState, type MouseEvent } from "react";
 
+interface ThemeType {
+  primaryColor: string;
+  backgroundColor: string;
+  accentColor: string;
+}
 interface DataTableType {
   datas: Array<Array<string>>;
   tableHeaders: Array<string>;
   tableTitle?: string;
+  theme?: ThemeType;
 }
+
+const defaultTheme = {
+  primaryColor: "#000000",
+  backgroundColor: "#bfcedd",
+  accentColor: "#3c56e7",
+};
 
 const OPTIONS_VALUES = [10, 25, 50, 100];
 
@@ -20,12 +32,17 @@ const OPTIONS_VALUES = [10, 25, 50, 100];
  * @param {Array<Array<string>>} props.datas - array of table entries. Each entrie is an array
  * @param {Array<string>} props.tableHeaders - array of table head titles
  * @param {string} props.tableTitle - optional - table title
+ * @param {ThemeType} props.theme - optional - css theme with colors
+ * @param {string} props.theme.primaryColor - text and borders color
+ * @param {string} props.theme.backgroundColor - background for alternates rows and page buttons
+ * @param {string} props.theme.accentColor - active buttons and underline
  * @retrun {ReactElement}
  */
 export default function DataTable({
   datas,
   tableHeaders,
   tableTitle,
+  theme,
 }: DataTableType) {
   const [sortedDatas, setSortedDatas] = useState<Array<Array<string>>>([]);
   const [displayedDatas, setDisplayedDatas] = useState<Array<Array<string>>>(
@@ -36,6 +53,13 @@ export default function DataTable({
   const [PagesButtons, setPagesButtons] = useState<Array<number>>([]);
   const [activePage, setActivePage] = useState<number>(1);
   const [numberOfEntries, setnumberOfEntries] = useState<number>(0);
+
+  const finalTheme = { ...defaultTheme, ...theme };
+  const styleVariables: React.CSSProperties = {
+    "--table-primary": finalTheme.primaryColor,
+    "--table-background": finalTheme.backgroundColor,
+    "--table-accent": finalTheme.accentColor,
+  };
 
   /**
    * This useEffect check datas changes.
@@ -222,7 +246,7 @@ export default function DataTable({
   } else {
     return (
       <>
-        <section className="data-table">
+        <section className="data-table" style={styleVariables}>
           {tableTitle ? <h2 className="title">{tableTitle}</h2> : ""}
           <div className="tools">
             <div className="pagination">

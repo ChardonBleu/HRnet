@@ -13,6 +13,12 @@ export default function Employees() {
       .abbreviation;
   }
 
+  const theme = {
+    primaryColor: "#212121",
+    backgroundColor: "#e5e7eb",
+    accentColor: "#6e8711",
+  };
+
   function employeesForTable(): Array<Array<string>> {
     return employees.map((employee) => [
       employee.firstName,
@@ -38,6 +44,7 @@ export default function Employees() {
           <DataTable
             datas={employeesForTable()}
             tableHeaders={EMPLOYEES_TABLE_HEADERS}
+            theme={theme}
           />
         </section>
       </main>

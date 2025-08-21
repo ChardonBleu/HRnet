@@ -1,9 +1,3 @@
-:root {
-  --table-primary: #212121;
-  --table-background: #e5e7eb;
-  --table-accent: #6e8711;
-}
-
 .data-table {
   width: 100%;
   font-size: small;
@@ -58,7 +52,7 @@
 }
 
 .data-table .fa {
-  color: #6e8711;
+  color: var(--table-accent);
   cursor: pointer;
   font-size: x-small;
 }
