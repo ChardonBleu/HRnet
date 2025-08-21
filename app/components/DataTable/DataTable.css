@@ -78,7 +78,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .filter input {
@@ -88,7 +87,7 @@
   border-radius: 5px;
   padding-left: 6px;
   margin-right: 6px;
-  margin-left:6px;
+  margin-left: 6px;
 }
 
 .pagination {
@@ -187,7 +186,6 @@
   .filter {
     padding-left: 6px;
   }
-    
 }
 
 @media (min-width: 1024px) {

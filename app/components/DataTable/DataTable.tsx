@@ -8,6 +8,20 @@ interface DataTableType {
 
 const OPTIONS_VALUES = [10, 25, 50, 100];
 
+/**
+ * Généric table.
+ * Entries length must all be the same,
+ * and tableHeaders length must ne equal to entries length.
+ * User can:
+ *    filter entries,
+ *    sort entries by each table column
+ *    choose number of entries per pages
+ * @param {DataTableType} props - component props
+ * @param {Array<Array<string>>} props.datas - array of table entries. Each entrie is an array
+ * @param {Array<string>} props.tableHeaders - array of table head titles
+ * @param {string} props.tableTitle - optional - table title
+ * @retrun {ReactElement}
+ */
 export default function DataTable({
   datas,
   tableHeaders,
@@ -21,14 +35,32 @@ export default function DataTable({
   const [isSorted, setIsSorted] = useState<boolean[]>([]);
   const [PagesButtons, setPagesButtons] = useState<Array<number>>([]);
   const [activePage, setActivePage] = useState<number>(1);
-  const [numberOfEmployees, setnumberOfEmployees] = useState<number>(0)
+  const [numberOfEntries, setnumberOfEntries] = useState<number>(0);
 
+  /**
+   * This useEffect check datas changes.
+   * Then sortedDatas, numberOfEntries and isSorted are initialized.
+   */
   useEffect(() => {
+    if (tableHeaders.length != datas[0].length) {
+      throw new Error("Invalid Datas");
+    }
     setSortedDatas(datas);
-    setnumberOfEmployees(datas.length)
+    setnumberOfEntries(datas.length);
     setIsSorted(new Array(tableHeaders.length).fill(false));
   }, [datas, tableHeaders.length]);
 
+  /**
+   * This useEffect checks if sortedDatas change.
+   * It can change when user sorts data with buttons in TableHeaders.
+   * Then displayed datas have to change.
+   *
+   * This useEffect also checks if activePage changes.
+   * It can happen when user click on navigation pages buttons.
+   *
+   * And This useEffect checks if itemPerPage changes.
+   * It can happen when user choose a number par page in select options.
+   */
   useEffect(() => {
     setDisplayedDatas(
       sortedDatas.slice(
@@ -36,13 +68,33 @@ export default function DataTable({
         itemPerPage * activePage,
       ),
     );
+    const nbPages = Math.ceil(numberOfEntries / itemPerPage);
+    setPagesButtons(Array.from({ length: nbPages }, (_, index) => index + 1));
   }, [sortedDatas, itemPerPage, activePage]);
 
+  /**
+   * This use effect checks if numberOfEntries
+ changes.
+   * It can happen when use filter employees.
+   */
   useEffect(() => {
-    const nbPages = Math.ceil(numberOfEmployees / itemPerPage);
+    const nbPages = Math.ceil(numberOfEntries / itemPerPage);
     setPagesButtons(Array.from({ length: nbPages }, (_, index) => index + 1));
-  }, [numberOfEmployees]);
+  }, [numberOfEntries]);
 
+  /**
+   * Employee sorting.
+   * When user click on a sorting button near to a table header title,
+   * index of this header title in tableHeaders list is passed in parameters.
+   * Exemple:
+   * tableHeaders = ["First Name", "Last Name", "Start Date"]
+   * If user clik to "Last Name" sorting button then  index = 1
+   * beafore sorting we have isSorted = [false, false, false]
+   * The result if  isSorted[index] determine sorting  direction.
+   * After sorting we have isSorted = [false, true, false]
+   *
+   * @param index tableHeaders index
+   */
   function handleSort(index: number) {
     if (tableHeaders[index].toLowerCase().includes("date")) {
       const sorted = [...sortedDatas].sort((a, b) => {
@@ -70,6 +122,13 @@ export default function DataTable({
     setIsSorted(newIsSorted);
   }
 
+  /**
+   * Employee filtering.
+   * When user add characters in filter input new data list is created
+   * and then number of entries
+ and displayed list are updated.
+   * Sorting datas are preserved.
+   */
   function handleFilter() {
     const input = document.querySelector("input");
     if (input && input?.value.length > 0) {
@@ -78,7 +137,7 @@ export default function DataTable({
           .map((item) => item.toLowerCase().includes(input.value.toLowerCase()))
           .reduce((acc, bool) => acc || bool),
       );
-      setnumberOfEmployees(newEmployeeList.length)
+      setnumberOfEntries(newEmployeeList.length);
       setDisplayedDatas(
         newEmployeeList.slice(
           (activePage - 1) * itemPerPage,
@@ -86,7 +145,7 @@ export default function DataTable({
         ),
       );
     } else {
-      setnumberOfEmployees(sortedDatas.length)
+      setnumberOfEntries(sortedDatas.length);
       setDisplayedDatas(
         sortedDatas.slice(
           (activePage - 1) * itemPerPage,
@@ -96,11 +155,19 @@ export default function DataTable({
     }
   }
 
+  /**
+   * Show select button options to choose number of entries
+ per page
+   */
   function toggleOptions() {
     const options = document.querySelector(".options");
     options?.classList.toggle("show-options");
   }
 
+  /**
+   * Number of row per page selection
+   * @param {MouseEvent<HTMLDivElement>} event
+   */
   function handleSelect(event: MouseEvent<HTMLDivElement>) {
     const optionValue = event.currentTarget.innerText;
     const selectValue = document.getElementById("select-value");
@@ -111,11 +178,18 @@ export default function DataTable({
     toggleOptions();
   }
 
+  /**
+   * Changing page with buttons page
+   * @param event
+   */
   function handleChangePage(event: MouseEvent<HTMLButtonElement>) {
     const currentPageButton = event.currentTarget;
     setActivePage(Number(currentPageButton.innerText));
   }
 
+  /**
+   * Changing page with previous button |<
+   */
   function handlePreviousPage() {
     if (activePage > 1) {
       setActivePage(activePage - 1);
@@ -125,6 +199,9 @@ export default function DataTable({
     console.log(activePage);
   }
 
+  /**
+   * Changing page with next button >|
+   */
   function handleNextPage() {
     const maxPage = PagesButtons.reduce((accumulator, currentValue) =>
       Math.max(accumulator, currentValue),
@@ -140,9 +217,7 @@ export default function DataTable({
   return (
     <>
       <section className="data-table">
-        {
-          tableTitle ? <h2 className="title">{tableTitle}</h2> : ""
-        }
+        {tableTitle ? <h2 className="title">{tableTitle}</h2> : ""}
         <div className="tools">
           <div className="pagination">
             <div>Show</div>
@@ -165,7 +240,7 @@ export default function DataTable({
               </div>
             </div>
 
-            <div>employees</div>
+            <div>entries</div>
           </div>
           <div className="filter">
             <label className="">Search: </label>
@@ -204,8 +279,8 @@ export default function DataTable({
         <div className="tools">
           <p>
             Showing {(activePage - 1) * itemPerPage + 1} to{" "}
-            {Math.min(itemPerPage * activePage, numberOfEmployees)} of{" "}
-            {numberOfEmployees} entries
+            {Math.min(itemPerPage * activePage, numberOfEntries)} of{" "}
+            {numberOfEntries} entries
           </p>
           <div className="pages-navigation">
             <i
