@@ -14,7 +14,7 @@ describe("Employees", () => {
         </Provider>
       </MemoryRouter>,
     );
-    const title = screen.getByText("Employees list");
+    const title = screen.getByText("Current Employees");
     expect(title).toBeInTheDocument();
   });
 });

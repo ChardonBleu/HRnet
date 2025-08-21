@@ -65,14 +65,20 @@
 
 .tools {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  gap: 10px;
 }
 
 .filter {
   border-radius: 5px;
   padding-left: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .filter input {
@@ -82,6 +88,7 @@
   border-radius: 5px;
   padding-left: 6px;
   margin-right: 6px;
+  margin-left:6px;
 }
 
 .pagination {
@@ -140,16 +147,24 @@
   background-color: var(--table-accent);
 }
 
-.page-navigation {
+.pages-navigation {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.pages-navigation .fa {
+  font-size: small;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .page-button {
   background-color: var(--table-background);
   border-radius: 6px;
   padding: 6px;
-  margin-left: 10px;
+  width: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .page-button:hover {
@@ -158,7 +173,7 @@
 
 .page-button_active {
   background-color: var(--table-accent);
-} 
+}
 
 @media (min-width: 640px) {
   .data-table {
@@ -167,7 +182,12 @@
   .data-table table,
   .data-table .tools {
     font-size: medium;
+    flex-direction: row;
   }
+  .filter {
+    padding-left: 6px;
+  }
+    
 }
 
 @media (min-width: 1024px) {
@@ -177,6 +197,10 @@
   }
   .data-table .fa {
     font-size: medium;
+  }
+
+  .pages-navigation .fa {
+    font-size: large;
   }
   .data-table table,
   .data-table .tools {

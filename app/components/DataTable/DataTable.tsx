@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent, type MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 interface DataTableType {
   datas: Array<Array<string>>;
@@ -21,11 +21,11 @@ export default function DataTable({
   const [isSorted, setIsSorted] = useState<boolean[]>([]);
   const [PagesButtons, setPagesButtons] = useState<Array<number>>([]);
   const [activePage, setActivePage] = useState<number>(1);
-
-  const numberOfEmployees = datas.length;
+  const [numberOfEmployees, setnumberOfEmployees] = useState<number>(0)
 
   useEffect(() => {
     setSortedDatas(datas);
+    setnumberOfEmployees(datas.length)
     setIsSorted(new Array(tableHeaders.length).fill(false));
   }, [datas, tableHeaders.length]);
 
@@ -36,9 +36,12 @@ export default function DataTable({
         itemPerPage * activePage,
       ),
     );
+  }, [sortedDatas, itemPerPage, activePage]);
+
+  useEffect(() => {
     const nbPages = Math.ceil(numberOfEmployees / itemPerPage);
     setPagesButtons(Array.from({ length: nbPages }, (_, index) => index + 1));
-  }, [sortedDatas, itemPerPage, activePage]);
+  }, [numberOfEmployees]);
 
   function handleSort(index: number) {
     if (tableHeaders[index].toLowerCase().includes("date")) {
@@ -62,21 +65,20 @@ export default function DataTable({
         sorted.slice((activePage - 1) * itemPerPage, itemPerPage * activePage),
       );
     }
-
     const newIsSorted = [...isSorted];
     newIsSorted[index] = !newIsSorted[index];
     setIsSorted(newIsSorted);
   }
 
-  function handleFilter(event: FormEvent) {
-    event.preventDefault();
+  function handleFilter() {
     const input = document.querySelector("input");
     if (input && input?.value.length > 0) {
-      const newEmployeeList = displayedDatas.filter((data) =>
+      const newEmployeeList = sortedDatas.filter((data) =>
         data
-          .map((item) => item.toLowerCase().includes(input.value))
+          .map((item) => item.toLowerCase().includes(input.value.toLowerCase()))
           .reduce((acc, bool) => acc || bool),
       );
+      setnumberOfEmployees(newEmployeeList.length)
       setDisplayedDatas(
         newEmployeeList.slice(
           (activePage - 1) * itemPerPage,
@@ -84,6 +86,7 @@ export default function DataTable({
         ),
       );
     } else {
+      setnumberOfEmployees(sortedDatas.length)
       setDisplayedDatas(
         sortedDatas.slice(
           (activePage - 1) * itemPerPage,
@@ -108,17 +111,38 @@ export default function DataTable({
     toggleOptions();
   }
 
-  function handleChangePage(event: MouseEvent<HTMLDivElement>) {
+  function handleChangePage(event: MouseEvent<HTMLButtonElement>) {
     const currentPageButton = event.currentTarget;
     setActivePage(Number(currentPageButton.innerText));
+  }
 
-    console.log(currentPageButton)
+  function handlePreviousPage() {
+    if (activePage > 1) {
+      setActivePage(activePage - 1);
+    } else {
+      setActivePage(1);
+    }
+    console.log(activePage);
+  }
+
+  function handleNextPage() {
+    const maxPage = PagesButtons.reduce((accumulator, currentValue) =>
+      Math.max(accumulator, currentValue),
+    );
+    if (activePage < maxPage) {
+      setActivePage(activePage + 1);
+    } else {
+      setActivePage(maxPage);
+    }
+    console.log(activePage);
   }
 
   return (
     <>
       <section className="data-table">
-        <h2 className="title">{tableTitle}</h2>
+        {
+          tableTitle ? <h2 className="title">{tableTitle}</h2> : ""
+        }
         <div className="tools">
           <div className="pagination">
             <div>Show</div>
@@ -149,7 +173,7 @@ export default function DataTable({
               type="text"
               placeholder="filter"
               name="filter"
-              onChange={(event) => handleFilter(event)}
+              onChange={() => handleFilter()}
             />
           </div>
         </div>
@@ -184,16 +208,46 @@ export default function DataTable({
             {numberOfEmployees} entries
           </p>
           <div className="pages-navigation">
+            <i
+              className="fa fa-backward-fast"
+              onClick={() => setActivePage(1)}
+              title="First"
+            ></i>
+            <i
+              className="fa fa-backward-step"
+              onClick={() => handlePreviousPage()}
+              title="Previous"
+            ></i>
             {PagesButtons.map((num) => (
               <button
                 key={num}
                 name={String(num)}
-                className={activePage === num ? "page-button page-button_active" : "page-button"}
+                className={
+                  activePage === num
+                    ? "page-button page-button_active"
+                    : "page-button"
+                }
                 onClick={(event) => handleChangePage(event)}
               >
                 {num}
               </button>
             ))}
+            <i
+              className="fa fa-forward-step"
+              onClick={() => handleNextPage()}
+              title="Next"
+            ></i>
+            <i
+              className="fa fa-forward-fast"
+              onClick={() =>
+                setActivePage(
+                  PagesButtons.reduce((accumulator, currentValue) =>
+                    Math.max(accumulator, currentValue),
+                  ),
+                )
+              }
+              title="Last"
+            ></i>
           </div>
         </div>
       </section>
