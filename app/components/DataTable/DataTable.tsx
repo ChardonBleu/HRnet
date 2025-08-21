@@ -42,9 +42,6 @@ export default function DataTable({
    * Then sortedDatas, numberOfEntries and isSorted are initialized.
    */
   useEffect(() => {
-    if (tableHeaders.length != datas[0].length) {
-      throw new Error("Invalid Datas");
-    }
     setSortedDatas(datas);
     setnumberOfEntries(datas.length);
     setIsSorted(new Array(tableHeaders.length).fill(false));
@@ -214,118 +211,128 @@ export default function DataTable({
     console.log(activePage);
   }
 
-  return (
-    <>
-      <section className="data-table">
-        {tableTitle ? <h2 className="title">{tableTitle}</h2> : ""}
-        <div className="tools">
-          <div className="pagination">
-            <div>Show</div>
+  if (!datas || !tableHeaders) {
+    return <div>Données maquantes</div>;
+  } else if (
+    !datas
+      .map((entries) => entries.length)
+      .every((x) => x === tableHeaders.length)
+  ) {
+    return <div>Données invalides</div>;
+  } else {
+    return (
+      <>
+        <section className="data-table">
+          {tableTitle ? <h2 className="title">{tableTitle}</h2> : ""}
+          <div className="tools">
+            <div className="pagination">
+              <div>Show</div>
 
-            <div className="select">
-              <div className="value" onClick={() => toggleOptions()}>
-                <p id="select-value">10</p>
-                <i className="fa fa-chevron-down"></i>
+              <div className="select">
+                <div className="value" onClick={() => toggleOptions()}>
+                  <p id="select-value">10</p>
+                  <i className="fa fa-chevron-down"></i>
+                </div>
+                <div className="options">
+                  {OPTIONS_VALUES.map((value) => (
+                    <div
+                      key={value}
+                      className="option"
+                      onClick={(event) => handleSelect(event)}
+                    >
+                      {value}
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="options">
-                {OPTIONS_VALUES.map((value) => (
-                  <div
-                    key={value}
-                    className="option"
-                    onClick={(event) => handleSelect(event)}
-                  >
-                    {value}
-                  </div>
-                ))}
-              </div>
+
+              <div>entries</div>
             </div>
-
-            <div>entries</div>
+            <div className="filter">
+              <label className="">Search: </label>
+              <input
+                type="text"
+                placeholder="filter"
+                name="filter"
+                onChange={() => handleFilter()}
+              />
+            </div>
           </div>
-          <div className="filter">
-            <label className="">Search: </label>
-            <input
-              type="text"
-              placeholder="filter"
-              name="filter"
-              onChange={() => handleFilter()}
-            />
-          </div>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              {tableHeaders?.map((header, index) => (
-                <th key={index}>
-                  {header}{" "}
-                  <i
-                    className="fa fa-sort"
-                    onClick={() => handleSort(index)}
-                  ></i>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {displayedDatas.map((row, index) => (
-              <tr key={index} className="row">
-                {row.map((item, index) => (
-                  <td key={index}>{item}</td>
+          <table>
+            <thead>
+              <tr>
+                {tableHeaders?.map((header, index) => (
+                  <th key={index}>
+                    {header}{" "}
+                    <i
+                      className="fa fa-sort"
+                      onClick={() => handleSort(index)}
+                    ></i>
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="tools">
-          <p>
-            Showing {(activePage - 1) * itemPerPage + 1} to{" "}
-            {Math.min(itemPerPage * activePage, numberOfEntries)} of{" "}
-            {numberOfEntries} entries
-          </p>
-          <div className="pages-navigation">
-            <i
-              className="fa fa-backward-fast"
-              onClick={() => setActivePage(1)}
-              title="First"
-            ></i>
-            <i
-              className="fa fa-backward-step"
-              onClick={() => handlePreviousPage()}
-              title="Previous"
-            ></i>
-            {PagesButtons.map((num) => (
-              <button
-                key={num}
-                name={String(num)}
-                className={
-                  activePage === num
-                    ? "page-button page-button_active"
-                    : "page-button"
+            </thead>
+            <tbody>
+              {displayedDatas.map((row, index) => (
+                <tr key={index} className="row">
+                  {row.map((item, index) => (
+                    <td key={index}>{item}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="tools">
+            <p>
+              Showing {(activePage - 1) * itemPerPage + 1} to{" "}
+              {Math.min(itemPerPage * activePage, numberOfEntries)} of{" "}
+              {numberOfEntries} entries
+            </p>
+            <div className="pages-navigation">
+              <i
+                className="fa fa-backward-fast"
+                onClick={() => setActivePage(1)}
+                title="First"
+              ></i>
+              <i
+                className="fa fa-backward-step"
+                onClick={() => handlePreviousPage()}
+                title="Previous"
+              ></i>
+              {PagesButtons.map((num) => (
+                <button
+                  key={num}
+                  name={String(num)}
+                  className={
+                    activePage === num
+                      ? "page-button page-button_active"
+                      : "page-button"
+                  }
+                  onClick={(event) => handleChangePage(event)}
+                >
+                  {num}
+                </button>
+              ))}
+              <i
+                className="fa fa-forward-step"
+                onClick={() => handleNextPage()}
+                title="Next"
+              ></i>
+              <i
+                className="fa fa-forward-fast"
+                onClick={() =>
+                  setActivePage(
+                    PagesButtons.reduce((accumulator, currentValue) =>
+                      Math.max(accumulator, currentValue),
+                    ),
+                  )
                 }
-                onClick={(event) => handleChangePage(event)}
-              >
-                {num}
-              </button>
-            ))}
-            <i
-              className="fa fa-forward-step"
-              onClick={() => handleNextPage()}
-              title="Next"
-            ></i>
-            <i
-              className="fa fa-forward-fast"
-              onClick={() =>
-                setActivePage(
-                  PagesButtons.reduce((accumulator, currentValue) =>
-                    Math.max(accumulator, currentValue),
-                  ),
-                )
-              }
-              title="Last"
-            ></i>
+                title="Last"
+              ></i>
+            </div>
           </div>
-        </div>
-      </section>
-    </>
-  );
+        </section>
+      </>
+    );
+  }
 }

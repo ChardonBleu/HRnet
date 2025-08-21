@@ -13,7 +13,7 @@ export default function Employees() {
       .abbreviation;
   }
 
-  function employeesForTable() {
+  function employeesForTable(): Array<Array<string>> {
     return employees.map((employee) => [
       employee.firstName,
       employee.lastName,
