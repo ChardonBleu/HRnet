@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect} from "vitest";
 import { render, screen } from "@testing-library/react";
 import Employees from "./employees";
 import { MemoryRouter } from "react-router";
@@ -12,9 +12,8 @@ describe("Employees", () => {
         <Provider store={store}>
           <Employees />
         </Provider>
-      </MemoryRouter>,
+      </MemoryRouter>
     );
-
     const title = screen.getByText("Current Employees");
     expect(title).toBeInTheDocument();
   });
