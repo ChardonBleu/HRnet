@@ -44,7 +44,6 @@ export function validationForm(): boolean {
         input?.name == "zipCode" && input.value.toString().length < 5
           ? false
           : true;
-
       displayErrorMessage(isValidInput, error);
       validation = validation && isValidInput && isValidZipCode;
     }
@@ -52,6 +51,7 @@ export function validationForm(): boolean {
       const isValidSelect = select.checkValidity();
       displayErrorMessage(isValidSelect, error);
       validation = validation && isValidSelect;
+      console.log("isValidSelect: " + isValidSelect)
     }
   }
   return validation;
@@ -160,7 +160,7 @@ export default function EmployeeForm() {
           value="Save"
         ></input>
       </Form>
-      <InfoDialog showModal={showModal} modalTitle="employee created!" />
+      <InfoDialog showModal={showModal} modalTitle="employee created!"/>
     </>
   );
 }
