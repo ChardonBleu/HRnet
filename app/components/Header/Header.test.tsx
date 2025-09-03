@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Header from "./Header";
-import Home from "../../routes/home/home"
+import Home from "../../routes/home/home";
 import Employees from "../../routes/employees/employees";
 import { MemoryRouter, createMemoryRouter, RouterProvider } from "react-router";
 import { Provider } from "react-redux";
@@ -65,8 +65,8 @@ describe("When user is on home page and click on employee nav link", () => {
         },
         {
           path: "/employee-list",
-          element: <Employees />
-        }
+          element: <Employees />,
+        },
       ],
       {
         initialEntries: ["/"],
@@ -78,16 +78,13 @@ describe("When user is on home page and click on employee nav link", () => {
         <RouterProvider router={router} />
       </Provider>,
     );
-    const EmployeesButton = screen.getByText("Employees")
-    console.log(EmployeesButton)
-    fireEvent.click(EmployeesButton)
+    const EmployeesButton = screen.getByText("Employees");
+    fireEvent.click(EmployeesButton);
 
-    const titlePage = screen.getByText("Current Employees")
-    expect(titlePage).toBeInTheDocument()
-
-  })
-})
-
+    const titlePage = screen.getByText("Current Employees");
+    expect(titlePage).toBeInTheDocument();
+  });
+});
 
 describe("When user is on employee list page and click on home nav link", () => {
   it("user goes to the home page", () => {
@@ -99,8 +96,8 @@ describe("When user is on employee list page and click on home nav link", () => 
         },
         {
           path: "/employee-list",
-          element: <Employees />
-        }
+          element: <Employees />,
+        },
       ],
       {
         initialEntries: ["/employee-list"],
@@ -112,12 +109,10 @@ describe("When user is on employee list page and click on home nav link", () => 
         <RouterProvider router={router} />
       </Provider>,
     );
-    const EmployeesButton = screen.getByText("Home")
-    console.log(EmployeesButton)
-    fireEvent.click(EmployeesButton)
+    const EmployeesButton = screen.getByText("Home");
+    fireEvent.click(EmployeesButton);
 
-    const titlePage = screen.getByText("Create Employee Form")
-    expect(titlePage).toBeInTheDocument()
-
-  })
-})
+    const titlePage = screen.getByText("Create Employee Form");
+    expect(titlePage).toBeInTheDocument();
+  });
+});

@@ -88,7 +88,7 @@ describe("EmployeeForm", () => {
   });
 });
 
-describe('When user fill valid form and submit it', () => {
+describe("When user fill valid form and submit it", () => {
   const renderHome = () => {
     const router = createMemoryRouter(
       [
@@ -107,9 +107,9 @@ describe('When user fill valid form and submit it', () => {
         <RouterProvider router={router} />
       </Provider>,
     );
-  }
-  it('renders confirmation modal', async () => {
-    renderHome()
+  };
+  it("renders confirmation modal", async () => {
+    renderHome();
 
     const firstNameInput = screen.getByLabelText(/first name/i);
     await userEvent.clear(firstNameInput);
@@ -138,7 +138,7 @@ describe('When user fill valid form and submit it', () => {
     const stateSelect = screen.getByTestId("state");
     fireEvent.click(stateSelect);
 
-    const stateOption = screen.getByTestId("Alabama")
+    const stateOption = screen.getByTestId("Alabama");
     fireEvent.click(stateOption);
 
     const zipCodeInput = screen.getByLabelText(/zip Code/i);
@@ -147,14 +147,14 @@ describe('When user fill valid form and submit it', () => {
 
     const departmentSelect = screen.getByTestId("department");
     fireEvent.click(departmentSelect);
-    
+
     const departmentOption = screen.getByTestId("Sales");
     fireEvent.click(departmentOption);
 
     const submitButton = screen.getByText("Save");
     fireEvent.click(submitButton);
- 
+
     const modalTitle = await screen.findByText("employee created!");
     expect(modalTitle).toBeInTheDocument();
-  })
-})
+  });
+});

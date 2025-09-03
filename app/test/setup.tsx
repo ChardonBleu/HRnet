@@ -10,8 +10,14 @@ afterEach(() => {
 });
 
 beforeAll(() => {
-    vi.mock("@chardonbleu/react-data-table", () => ({
-    DataTable: ({ datas, tableHeaders }: { datas: Array<Array<string>>; tableHeaders: Array<string> }) => (
+  vi.mock("@chardonbleu/react-data-table", () => ({
+    DataTable: ({
+      datas,
+      tableHeaders,
+    }: {
+      datas: Array<Array<string>>;
+      tableHeaders: Array<string>;
+    }) => (
       <table>
         <thead>
           <tr>
@@ -32,4 +38,4 @@ beforeAll(() => {
       </table>
     ),
   }));
-})
+});
