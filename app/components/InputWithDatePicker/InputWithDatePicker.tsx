@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { Calendar } from "../ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
-function formatDate(date: Date | undefined) {
+export function formatDate(date: Date | undefined) {
   if (!date) {
     return "";
   }
@@ -54,6 +54,7 @@ export default function InputWithDatePicker({
       <div className="error" data-error="Please choose a date in the calendar.">
         <div className="relative flex gap-2">
           <input
+            data-testid="dateInput"
             type="text"
             id={name}
             name={name}
@@ -87,6 +88,7 @@ export default function InputWithDatePicker({
                 id="date-picker"
                 variant="ghost"
                 className="absolute top-1/2 right-2 size-6 -translate-y-1/2"
+                data-testid="calendarIcon"
               >
                 <CalendarIcon className="size-5 text-green-meadow" />
                 <span className="sr-only">Select date</span>
@@ -103,7 +105,9 @@ export default function InputWithDatePicker({
                   setDate(date);
                   setValue(formatDate(date));
                   setOpen(false);
+                  console.log("dans onSelect");
                 }}
+                data-testid="calendar"
               />
             </PopoverContent>
           </Popover>

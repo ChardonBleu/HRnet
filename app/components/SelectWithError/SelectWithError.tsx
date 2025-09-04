@@ -41,6 +41,7 @@ export default function SelectWithError({
         value={text}
         key={index}
         className="lg:text-xl text-sm sm:text-base"
+        data-testid={text}
       >
         {text}
       </SelectItem>
@@ -48,13 +49,16 @@ export default function SelectWithError({
   }
 
   return (
-    <div className="flex lg:mb-4">
+    <div className="flex lg:mb-4" data-testid="select">
       <label htmlFor={name} className="mr-5">
         {labelTitle}
       </label>
       <div className="error" data-error="Please choose an element in the list.">
         <Select name={name} required={isRequired}>
-          <SelectTrigger className="w-[280px] lg:text-xl text-sm sm:text-base">
+          <SelectTrigger
+            className="w-[280px] lg:text-xl text-sm sm:text-base"
+            data-testid={name}
+          >
             <SelectValue placeholder={"Pick a " + name} />
           </SelectTrigger>
           <SelectContent>

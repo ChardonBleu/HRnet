@@ -3,35 +3,35 @@ import Footer from "~/components/Footer/Footer";
 import { useSelector } from "react-redux";
 import { getAllEmployees } from "~/store/selectors";
 import { EMPLOYEES_TABLE_HEADERS, STATES } from "~/utils/constants";
-import DataTable from "../../components/DataTable/DataTable";
+import { DataTable } from "@chardonbleu/react-data-table";
+import type { Employee } from "~/store/store";
+
+export function stateAbbrevation(employeeState: string) {
+  return STATES.filter((state) => state.name === employeeState)[0].abbreviation;
+}
+
+export function employeesForTable(employees: Employee[]): Array<Array<string>> {
+  return employees.map((employee) => [
+    employee.firstName,
+    employee.lastName,
+    employee.startDate,
+    employee.department,
+    employee.birthDate,
+    employee.street,
+    employee.city,
+    stateAbbrevation(employee.state),
+    employee.zipCode,
+  ]);
+}
 
 export default function Employees() {
   const employees = useSelector(getAllEmployees);
-
-  function stateAbbrevation(employeeState: string) {
-    return STATES.filter((state) => state.name === employeeState)[0]
-      .abbreviation;
-  }
 
   const theme = {
     primaryColor: "#212121",
     backgroundColor: "#e5e7eb",
     accentColor: "#6e8711",
   };
-
-  function employeesForTable(): Array<Array<string>> {
-    return employees.map((employee) => [
-      employee.firstName,
-      employee.lastName,
-      employee.startDate,
-      employee.department,
-      employee.birthDate,
-      employee.street,
-      employee.city,
-      stateAbbrevation(employee.state),
-      employee.zipCode,
-    ]);
-  }
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function Employees() {
             Current Employees
           </h2>
           <DataTable
-            datas={employeesForTable()}
+            datas={employeesForTable(employees)}
             tableHeaders={EMPLOYEES_TABLE_HEADERS}
             theme={theme}
           />

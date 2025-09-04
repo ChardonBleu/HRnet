@@ -44,7 +44,6 @@ export function validationForm(): boolean {
         input?.name == "zipCode" && input.value.toString().length < 5
           ? false
           : true;
-
       displayErrorMessage(isValidInput, error);
       validation = validation && isValidInput && isValidZipCode;
     }

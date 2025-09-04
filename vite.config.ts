@@ -9,9 +9,14 @@ export default defineConfig({
     !process.env.VITEST && reactRouter(),
     tsconfigPaths(),
   ],
+  css: {
+    modules: {
+      localsConvention: "camelCase",
+    },
+  },
   test: {
     environment: "jsdom",
-    setupFiles: "./app/test/setup.js",
+    setupFiles: "./app/test/setup.tsx",
     globals: true,
     coverage: {
       provider: "v8",
