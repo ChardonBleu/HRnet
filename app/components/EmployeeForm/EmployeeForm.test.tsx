@@ -154,7 +154,7 @@ describe("When user fill valid form and submit it", () => {
     const submitButton = screen.getByText("Save");
     fireEvent.click(submitButton);
 
-    const modalTitle = await screen.findByText("employee created!");
+    const modalTitle = await screen.findByText("Employee created!");
     expect(modalTitle).toBeInTheDocument();
   });
 });

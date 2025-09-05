@@ -22,7 +22,10 @@ export default function Header() {
           <img src="/hrnet_logo.png" alt="App logo" />
           <span className="sr-only">HRnet</span>
         </h1>
-        <nav className="flex justify-center gap-10 lg:text-xl">
+        <nav
+          className="flex justify-center gap-10 lg:text-xl"
+          data-testid="header-links"
+        >
           <NavLink
             to="/"
             className={({ isActive, isPending }) =>

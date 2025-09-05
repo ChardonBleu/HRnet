@@ -31,7 +31,9 @@ export function InfoDialog({
     <AlertDialog open={showModal}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{modalTitle}</AlertDialogTitle>
+          <AlertDialogTitle data-testid="modal-created">
+            {modalTitle}
+          </AlertDialogTitle>
           <AlertDialogDescription>{modalText}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -39,6 +41,7 @@ export function InfoDialog({
             onClick={() => {
               window.location.reload();
             }}
+            data-testid="modal-close"
           >
             Close
           </AlertDialogAction>

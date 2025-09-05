@@ -30,6 +30,7 @@ export default defineConfig([
     "node_modules/*",
     "coverage/*",
     "app/components/ui",
+    "cypress/*",
   ]),
   {
     rules: {
