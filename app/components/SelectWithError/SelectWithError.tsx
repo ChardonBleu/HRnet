@@ -59,7 +59,7 @@ export default function SelectWithError({
             className="md:w-[280px] w-[200px] lg:text-xl text-sm sm:text-base"
             data-testid={name}
           >
-            <SelectValue placeholder={"Pick a " + name}/>
+            <SelectValue placeholder={"Pick a " + name} />
           </SelectTrigger>
           <SelectContent>
             {options.map((optionText, index) =>

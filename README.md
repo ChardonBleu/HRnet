@@ -87,3 +87,29 @@ npm run build
 ## Styling
 
 This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+
+## Ressources:
+
+- Documentation Redux [createEntityAdapter](https://redux-toolkit.js.org/api/createEntityAdapter#crud-functions)
+
+- Victor Lillo Blog - [Build a React component library with TypeScript and Vite](https://victorlillo.dev/blog/react-typescript-vite-component-library)
+
+- Akos blog - [React Router Vitest Example](https://akoskm.com/react-router-vitest-example/)
+
+- Shadcn documentation [https://ui.shadcn.com/docs/installation](https://ui.shadcn.com/docs/installation)
+
+- Storybook documentation [https://storybook.js.org/docs/get-started/install](https://storybook.js.org/docs/get-started/install)
+
+- Grafikart tutorial about Shadcn [https://grafikart.fr/tutoriels/shadcn-ui-components-2293](https://grafikart.fr/tutoriels/shadcn-ui-components-2293)
+
+- Grafikart tutorial about Storybook [https://grafikart.fr/tutoriels/storybook-1374](https://grafikart.fr/tutoriels/storybook-1374)
+
+- Cypress documentation [https://docs.cypress.io/api/commands/prev](https://docs.cypress.io/api/commands/prev)
+
+- Lighthouse documentation [https://www.theclientside.net/react/lighthouse-audits/](https://www.theclientside.net/react/lighthouse-audits/)
+
+- Vitest documentation (french version) [https://vitest.fr/](https://vitest.fr/)
+
+## Thanks:
+
+Many thanks to Herbert Caffarel for his valuable advices and feedbacks.
