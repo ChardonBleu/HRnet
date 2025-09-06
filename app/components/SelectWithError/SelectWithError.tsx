@@ -56,7 +56,7 @@ export default function SelectWithError({
       <div className="error" data-error="Please choose an element in the list.">
         <Select name={name} required={isRequired}>
           <SelectTrigger
-            className="w-[280px] lg:text-xl text-sm sm:text-base"
+            className="md:w-[280px] w-[200px] lg:text-xl text-sm sm:text-base"
             data-testid={name}
           >
             <SelectValue placeholder={"Pick a " + name} />

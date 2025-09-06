@@ -29,7 +29,7 @@ export default function Header() {
           <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-              linkColor(isActive, isPending)
+              `${linkColor(isActive, isPending)} hover:text-green-moss`
             }
           >
             Home
@@ -37,7 +37,7 @@ export default function Header() {
           <NavLink
             to="/employee-list"
             className={({ isActive, isPending }) =>
-              linkColor(isActive, isPending)
+              `${linkColor(isActive, isPending)} hover:text-green-moss`
             }
           >
             Employees
