@@ -2,25 +2,28 @@
 @import "tw-animate-css";
 /* Import de votre module CSS personnalisé */
 
-@import "./components/InputWithError/InputWithError.css";
-@import "./components/SelectWithError/SelectwithError.css";
-@import "./components/Loading/Loading.css";
-@import "./components/ui/shadcn.css";
+@import "../components/InputWithError/InputWithError.css";
+@import "../components/SelectWithError/SelectwithError.css";
+@import "../components/Loading/Loading.css";
+@import "../components/ui/shadcn.css";
+
+@font-face {
+  font-family: "Raleway-variable";
+  src: url("./Raleway-VariableFont_wght.ttf") format("truetype");
+  font-display: swap;
+}
 
 @theme {
-  --font-roboto:
-    "Roboto", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-raleway:
-    "Raleway", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    "Raleway-variable", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --color-green-apple: #93ad19;
   --color-green-meadow: #6e8711;
   --color-green-moss: #5a6f07;
   --color-cream: #fffbe9;
   --color-anthracite: #212121;
-  --color-mouse: #e5e7eb;
+  --color-mouse: #747474;
   --color-error: #910000;
   --color-error-pale: rgba(158, 17, 0, 0.6);
 }

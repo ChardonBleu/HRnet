@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { loadAndRestoreState } from "./store/storePersistance";
 import type { Route } from "./+types/root";
-import "./app.css";
+import "./assets/app.css";
 import { useEffect } from "react";
 import { Loading } from "./components/Loading/Loading";
 
@@ -18,24 +18,63 @@ export const meta: Route.MetaFunction = () => [
   { title: "HRnet" },
   {
     name: "description",
-    content: "HR management application",
+    content:
+      "Modern HR management application for employee data management and workflow optimization",
+  },
+  {
+    name: "keywords",
+    content:
+      "HR, human resources, employee management, HRnet, workforce management",
+  },
+  {
+    name: "author",
+    content: "HRnet Team",
+  },
+  {
+    property: "og:title",
+    content: "HRnet - HR Management Application",
+  },
+  {
+    property: "og:description",
+    content:
+      "Modern HR management application for employee data management and workflow optimization",
+  },
+  {
+    property: "og:type",
+    content: "website",
+  },
+  {
+    name: "twitter:card",
+    content: "summary",
+  },
+  {
+    name: "twitter:title",
+    content: "HRnet - HR Management Application",
+  },
+  {
+    name: "twitter:description",
+    content: "Modern HR management application for employee data management",
+  },
+  {
+    name: "robots",
+    content: "index, follow",
   },
 ];
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
+    rel: "preload",
+    fetchPriority: "high",
+    as: "image",
+    href: "/hrnet_logo.webP",
+    type: "image/webp",
   },
   {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+    rel: "preload",
+    fetchPriority: "high",
+    as: "image",
+    href: "/wealth_health.webP",
+    type: "image/webp",
   },
 ];
 
