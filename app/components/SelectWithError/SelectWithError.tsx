@@ -50,9 +50,7 @@ export default function SelectWithError({
 
   return (
     <div className="flex lg:mb-4" data-testid="select">
-      <label htmlFor={name} className="mr-5">
-        {labelTitle}
-      </label>
+      <div className="mr-5">{labelTitle}</div>
       <div className="error" data-error="Please choose an element in the list.">
         <Select name={name} required={isRequired}>
           <SelectTrigger
