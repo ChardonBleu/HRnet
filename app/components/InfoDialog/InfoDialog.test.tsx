@@ -2,19 +2,14 @@ import { describe, it, expect, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { InfoDialog } from "./InfoDialog";
 
-const mockReload = vi.fn();
-Object.defineProperty(window, "location", {
-  value: {
-    reload: mockReload,
-  },
-  writable: true,
-});
+const setShowModal = vi.fn();
 
 describe("InfoDialog", () => {
   it("renders with all props when showModal true", () => {
     render(
       <InfoDialog
         showModal={true}
+        setShowModal={setShowModal}
         modalTitle="Ma modale"
         modalText="Nice modal text"
       />,
@@ -27,7 +22,13 @@ describe("InfoDialog", () => {
     expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
   });
   it("renders without optional props when showModal true", () => {
-    render(<InfoDialog showModal={true} modalTitle="Ma modale" />);
+    render(
+      <InfoDialog
+        showModal={true}
+        setShowModal={setShowModal}
+        modalTitle="Ma modale"
+      />,
+    );
 
     const modalTitle = screen.getByText("Ma modale");
     expect(modalTitle).toBeInTheDocument();
@@ -37,6 +38,7 @@ describe("InfoDialog", () => {
     render(
       <InfoDialog
         showModal={false}
+        setShowModal={setShowModal}
         modalTitle="Ma modale"
         modalText="Nice modal text"
       />,
@@ -48,6 +50,7 @@ describe("InfoDialog", () => {
     render(
       <InfoDialog
         showModal={true}
+        setShowModal={setShowModal}
         modalTitle="Test Title"
         modalText="Test text"
       />,
@@ -55,7 +58,6 @@ describe("InfoDialog", () => {
 
     const closeButton = screen.getByRole("button", { name: "Close" });
     fireEvent.click(closeButton);
-
-    expect(mockReload).toHaveBeenCalledTimes(1);
+    expect(setShowModal).toHaveBeenCalledTimes(1);
   });
 });

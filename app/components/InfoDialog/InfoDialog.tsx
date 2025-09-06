@@ -10,6 +10,7 @@ import {
 
 interface InfoDialogType {
   showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   modalTitle: string;
   modalText?: string;
 }
@@ -24,11 +25,19 @@ interface InfoDialogType {
  * */
 export function InfoDialog({
   showModal,
+  setShowModal,
   modalTitle,
   modalText,
 }: InfoDialogType) {
+  function handleClose() {
+    setShowModal(false);
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+  }
+
   return (
-    <AlertDialog open={showModal}>
+    <AlertDialog open={showModal} onOpenChange={handleClose}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle data-testid="modal-created">
@@ -37,14 +46,7 @@ export function InfoDialog({
           <AlertDialogDescription>{modalText}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogAction
-            onClick={() => {
-              window.location.reload();
-            }}
-            data-testid="modal-close"
-          >
-            Close
-          </AlertDialogAction>
+          <AlertDialogAction data-testid="modal-close">Close</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

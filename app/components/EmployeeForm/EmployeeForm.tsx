@@ -161,7 +161,11 @@ export default function EmployeeForm() {
           aria-label="form save button"
         ></input>
       </Form>
-      <InfoDialog showModal={showModal} modalTitle="Employee created!" />
+      <InfoDialog
+        showModal={showModal}
+        setShowModal={setShowModal}
+        modalTitle="Employee created!"
+      />
     </>
   );
 }
