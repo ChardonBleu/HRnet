@@ -22,7 +22,7 @@
         #00bc77 calc(100% - 20px)
       )
       content-box;
-  animation: l6 500ms infinite;
+  animation: l6 200ms infinite;
 }
 @keyframes l6 {
   to {

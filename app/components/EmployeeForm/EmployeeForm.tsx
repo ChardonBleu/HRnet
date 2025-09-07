@@ -154,7 +154,7 @@ export default function EmployeeForm() {
         />
 
         <input
-          className="bg-green-meadow opacity-80  text-white font-bold rounded-md p-2 lg:m-10 m-4 shadow-md self-center w-40 hover:opacity-100 focus:opacity-100 focus:scale-105 transition-all duration-300"
+          className="bg-green-moss opacity-100  text-white font-bold rounded-md p-2 lg:m-10 m-4 shadow-md self-center w-40 hover:opacity-80 focus:opacity-80 focus:scale-105 transition-all duration-300"
           type="submit"
           value="Save"
           data-testid="save"

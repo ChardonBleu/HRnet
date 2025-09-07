@@ -9,6 +9,18 @@ export default defineConfig({
     !process.env.VITEST && reactRouter(),
     tsconfigPaths(),
   ],
+  publicDir: "public",
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: "client/assets/[name].[hash].js",
+        chunkFileNames: "client/assets/[name].[hash].js",
+        assetFileNames: "client/assets/[name].[hash].[ext]",
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+    sourcemap: false,
+  },
   css: {
     modules: {
       localsConvention: "camelCase",

@@ -19,7 +19,13 @@ export default function Header() {
     <>
       <header className="flex justify-between items-center w-full bg-white pr-4 pl-4 lg:pr-10 lg:pl-10 pt-2 pb-2">
         <h1 className="w-32 lg:w-52">
-          <img src="/hrnet_logo.png" alt="App logo" />
+          <img
+            fetchPriority="high"
+            src="/hrnet_logo.webP"
+            alt="App logo"
+            width="200"
+            height="70"
+          />
           <span className="sr-only">HRnet</span>
         </h1>
         <nav

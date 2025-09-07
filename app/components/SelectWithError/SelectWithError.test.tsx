@@ -13,7 +13,6 @@ describe("InputWithError", () => {
     );
     const labelElement = screen.getByText("State:");
     expect(labelElement).toBeInTheDocument();
-    expect(labelElement).toHaveAttribute("for", "state");
 
     const selectElement = screen.getByText("Pick a state");
     expect(selectElement).toBeInTheDocument();

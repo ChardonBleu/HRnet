@@ -40,7 +40,7 @@ describe("When user click on calendar icon", () => {
 
     const today = new Date();
     const todayString = getDateFormattedForCalendarTest(today);
-    const todayDay = today.getDay();
+    const todayDay = today.getDate();
 
     const calendarIcon = screen.getByTestId("calendarIcon");
 
