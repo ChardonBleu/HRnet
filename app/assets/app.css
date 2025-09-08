@@ -9,11 +9,7 @@
 
 @font-face {
   font-family: "Raleway-variable";
-<<<<<<< HEAD
-  src: url("./Raleway-VariableFont_wght.ttf") format("truetype");
-=======
   src: url("./Raleway-Regular.ttf") format("truetype");
->>>>>>> edc8215 (🔧 config: configure for built app preview)
   font-display: swap;
 }
 
