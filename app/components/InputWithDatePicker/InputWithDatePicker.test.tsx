@@ -1,6 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { formatDate } from "./InputWithDatePicker";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from "@testing-library/react";
 import InputWithDatePicker from "./InputWithDatePicker";
 import { getDateFormattedForCalendarTest } from "../../utils/functions";
 import userEvent from "@testing-library/user-event";
@@ -35,7 +41,7 @@ describe("formatDate function", () => {
 });
 
 describe("When user click on calendar icon", () => {
-  it("opens calendar with current month at current date ", () => {
+  it("opens calendar with current month at current date ", async () => {
     render(<InputWithDatePicker name="birthDate" labelTitle="Birth Date:" />);
 
     const today = new Date();
@@ -44,7 +50,9 @@ describe("When user click on calendar icon", () => {
 
     const calendarIcon = screen.getByTestId("calendarIcon");
 
-    fireEvent.click(calendarIcon);
+    await act(async () => {
+      fireEvent.click(calendarIcon);
+    });
 
     const calendar = screen.getByTestId("calendar");
     expect(calendar).toBeInTheDocument();
