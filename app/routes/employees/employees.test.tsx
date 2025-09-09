@@ -46,7 +46,6 @@ describe("employeeForTable function", () => {
     const employees = vi.fn();
     employees.mockReturnValue([testEmployee, testEmployee, testEmployee]);
     const result = employeesForTable(employees());
-    console.log(result);
     expect(result.length).toEqual(3);
     expect(result[0]).toEqual([
       "Clark",

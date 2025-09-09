@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { getDateFormattedForCalendarTest } from "./functions";
 
 describe("function getDateFormattedForCalendarTest", () => {
-  it("return weel formated date", () => {
+  it("return well formated date", () => {
     const dateThird = new Date("2025/09/03");
     expect(getDateFormattedForCalendarTest(dateThird)).toEqual(
       "Wednesday, September 3rd, 2025",

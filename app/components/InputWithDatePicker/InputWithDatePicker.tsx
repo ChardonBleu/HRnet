@@ -105,7 +105,6 @@ export default function InputWithDatePicker({
                   setDate(date);
                   setValue(formatDate(date));
                   setOpen(false);
-                  console.log("dans onSelect");
                 }}
                 data-testid="calendar"
               />
